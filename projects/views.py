@@ -1,12 +1,15 @@
+from .models import Project
+from .forms import ProjectForm
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
-from .models import Project
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
-from .forms import ProjectForm
 from django.views.generic.detail import DetailView
+
+#import of model Module for add one list in the project
+from modules.models import Module
 
 # Create your views here.
 
@@ -16,6 +19,10 @@ class ProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["modules"] = Module.objects.filter(project_id=self.get_object())
+        return context
 
 
 @method_decorator(staff_member_required, name='dispatch')

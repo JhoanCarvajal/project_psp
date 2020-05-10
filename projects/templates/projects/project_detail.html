@@ -7,19 +7,55 @@
   <div class="container">
     <div class="row mt-3">
       <table class="table table-striped">
-        <tbody>
+        <tbody class="thead-dark">
           <tr>
             <th scope="col"><h2 class="section-heading mb-4">{{project.name}}</h2></th>
-            <td>Descripción: {{project.description}}</td>
-            <td>
+            <th>Descripción: {{project.description}}</th>
+            <th>
               Creado: {{project.created|date:"d/m/y h:m:s"}}<br>
               Actualizado: {{project.updated|date:"d/m/y h:m:s"}}<br>
               Finalizado: {{project.finished|date:"d/m/y h:m:s"}}
-            </td>
-            <td>
+            </th>
+            <th>
               {% if request.user.is_staff %}
                 <p><a href="{% url 'project_update' project.id %}">Editar</a></p>
               {% endif %}
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"><h5 class="section-heading mb-4">Modulos</h5>
+              <a href="{% url 'module_create' project.id %}">nuevo modulo</a>
+            </th>
+            <th scope="col"><h5 class="section-heading mb-4">Programadores</h5>
+              <a href="#">Agregar programador</a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <table class="table table-hover">
+                <tbody>
+                  {% for module in modules %}
+                    <tr class="table-secondary">
+                      <td><h6>{{module.name}}</h6></th>
+                      <td>
+                        {% if request.user.is_staff %}
+                          <p><a href="{% url 'module_detail' module.id module.name|slugify %}">Leer más</a></p>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </td>
+            <td>
+              <p>programadores</p>
             </td>
           </tr>
         </tbody>
@@ -27,4 +63,11 @@
     </div>
   </div>
 </main>
+
 {% endblock %}
+
+    <h5>Modulos</h5>
+    {% for module in modules %}
+      <p>{{module.name}} <a href="{% url 'module_detail' module.id module.name|slugify %}">Leer más</a></p>
+    {% endfor %}
+    
