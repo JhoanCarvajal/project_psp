@@ -1,0 +1,9 @@
+<h1>Programas</h1>
+<ul>
+{% for object in object_list %}
+    <a href="{% url 'project_detail' object.module_id.project_id.id object.module_id.project_id.name|slugify %}">Leer más</a>
+    <li>{{object.module_id.project_id}} - {{object.module_id}} - {{ object.name }} - {{ object.created|date:"d/m/y h:m:s" }}</li>
+{% empty %}
+    <li>No objects yet.</li>
+{% endfor %}
+</ul>

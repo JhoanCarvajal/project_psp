@@ -24,11 +24,18 @@
         </tbody>
       </table>
       
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col"><h5 class="section-heading mb-4">Programas</h5>
-              <a href="{% url 'program_create' object.id %}">nuevo programa</a>
+              <a href="#">nuevo programa</a>
             </th>
             <th scope="col"><h5 class="section-heading mb-4">Programadores</h5>
               <a href="#">Agregar programador</a>
@@ -40,16 +47,12 @@
             <td>
               <table class="table table-hover">
                 <tbody>
-                  {% for program in programs %}
                     <tr class="table-secondary">
-                      <td><h6>{{program.name}}</h6></th>
+                      <td><h6></h6></th>
                       <td>
-                        {% if request.user.is_staff %}
-                          <p><a href="{% url 'program_detail' program.id program.name|slugify %}">Leer más</a></p>
-                        {% endif %}
+                          <p><a href="#">Leer más</a></p>
                       </td>
                     </tr>
-                  {% endfor %}
                 </tbody>
               </table>
             </td>
@@ -59,8 +62,3 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-</main>
-
-{% endblock %}

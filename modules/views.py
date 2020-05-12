@@ -1,4 +1,5 @@
 from .models import Module
+from programs.models import Program
 
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
@@ -16,6 +17,10 @@ class ModuleListView(ListView):
 
 class ModuleDetailView(DetailView):
     model = Module
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["programs"] = Program.objects.filter(module_id=self.get_object())
+        return context
 
 
 @method_decorator(staff_member_required, name='dispatch')

@@ -65,9 +65,3 @@
 </main>
 
 {% endblock %}
-
-    <h5>Modulos</h5>
-    {% for module in modules %}
-      <p>{{module.name}} <a href="{% url 'module_detail' module.id module.name|slugify %}">Leer más</a></p>
-    {% endfor %}
-    
