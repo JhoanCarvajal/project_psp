@@ -1,9 +1,30 @@
-<h1>Programas</h1>
-<ul>
-{% for object in object_list %}
-    <a href="{% url 'project_detail' object.module_id.project_id.id object.module_id.project_id.name|slugify %}">Leer más</a>
-    <li>{{object.module_id.project_id}} - {{object.module_id}} - {{ object.name }} - {{ object.created|date:"d/m/y h:m:s" }}</li>
-{% empty %}
-    <li>No objects yet.</li>
-{% endfor %}
-</ul>
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Lista de programas{% endblock %}
+{% block content %}
+
+<main role="main">
+  <div class="container mb-4">
+      <div class="row mt-3">
+        <h1>Programas</h1>
+        <ul>
+        {% for object in object_list %}
+        <p>
+            Proyecto:
+            <a href="{% url 'project_detail' object.module_id.project_id.id object.module_id.project_id.name|slugify %}">{{object.module_id.project_id}}</a>
+            
+            Modulo:
+            <a href="{% url 'module_detail' object.module_id.id object.module_id.name|slugify %}">{{object.module_id}}</a>
+            
+            Programa:
+            <a href="{% url 'program_detail' object.id object.name|slugify %}">{{object.name}}</a>
+            {{ object.created|date:"d/m/y h:m:s" }}
+        </p>
+        {% empty %}
+            <li>No objects yet.</li>
+        {% endfor %}
+        </ul>
+      </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,4 +1,5 @@
 from .models import Program
+from modules.models import Module
 
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
@@ -39,3 +40,4 @@ class ProgramUpdate(UpdateView):
 class ProgramDelete(DeleteView):
     model = Program
     success_url = reverse_lazy('programs')
+
