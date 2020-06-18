@@ -1,0 +1,27 @@
+:root {
+  --fondo: url("../img/fondoLogin.png");
+  --porsentaje-borde-radius: 5%;
+  --bac-color: #70afbe;
+}
+
+
+.centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bg-color{
+	background-color: var(--bac-color);
+}
+.redondeo-izq{
+	border-top-left-radius: var(--porsentaje-borde-radius);
+	border-bottom-left-radius: var(--porsentaje-borde-radius);
+}
+.redondeo-der{
+	border-top-right-radius: var(--porsentaje-borde-radius);
+	border-bottom-right-radius: var(--porsentaje-borde-radius);
+}
+.img-fondo{
+  background-image: var(--fondo);
+}

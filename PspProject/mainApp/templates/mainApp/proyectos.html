@@ -1,0 +1,14 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
+    <h1>Proyectos</h1>
+
+    {% for proyecto in proyectos %}
+        <h2>{{proyecto.1}} </h2>
+        <p>{{proyecto.2}} </p>
+        <p>{{proyecto.3}} </p>
+        <p>{{proyecto.4}} </p>
+    {% endfor %}
+{% endblock content %}

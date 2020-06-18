@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+
+    <title>{{title}}</title>
+</head>
+<body>
+<div class="das">
+    <ul>
+        {% if user.email %}
+        
+            <li>
+                <h3>Bienvenido {{request.user.first_name}}</h3>
+            </li>
+        
+        {% endif %}
+        <li>
+            <a href="{% url 'proyectos' %}">proyectos</a>
+        </li>
+
+        <li>
+            <a href="{% url 'modulos' %}">modulos</a>
+        </li>
+
+        {% if user.email %}
+            <li>
+                <a href="{% url 'logout' %}">Cerrar sicion</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url 'login' %}">Ingresar</a>
+            </li>
+        {% endif %}
+
+
+    </ul>
+</div>
+
+<div class="box ">
+    {% block content %}
+
+    {% endblock content %}
+</div>
+</body>
+</html>
