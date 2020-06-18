@@ -46,14 +46,12 @@
 						<label for="username" id="usuario"class="sr-only-focusable">Usuario</label>
 						<input type="text" name="usuario" id="usuario" class="form-control" required autofocus>
 						<label for="password" class="sr-only-focusable">Contraseña</label>
-						<input type="password" id="constraseña" name="contraseña" class="form-control border-bottom" required>
-						<div class="checkbox my-3">
-							<label>
-								<input type="checkbox" value="1"> Recuerdame
-							</label>
-						</div>
+						<input type="password" id="constraseña" name="contraseña" class="form-control mb-5" required>
 						<button class="btn btn-lg btn-primary btn-block" type="submit" value="Acceder">Acceder</button>
 					</form>
+					<p>
+					¿Ha olvidado su clave? Puede restaurarla <a href="{% url 'password_reset' %}">aquí</a>.
+					</p>
     			</div>
 			</div>
 			<div class="row align-items-end">
@@ -64,7 +62,6 @@
 			</div>
 		</div>
 		<div class="col col-sm-12 d-none d-lg-block col-lg-5 redondeo-der p-0 img-fondo mt-5">
-			<!--<img src="img/fondoLogin.png" class="img-fluid redondeo-der" alt="Responsive image">-->
 			<div class="centrado text-light">
 				<h1>Bienvenido a<img src="{% static 'img/logo_psp.png' %}" width="140" height="40" class="d-inline-block align-top" alt="" loading="lazy"></h1>
 				<h5>Inicie sesión en su cuenta</h4>

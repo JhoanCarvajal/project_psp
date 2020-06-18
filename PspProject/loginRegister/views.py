@@ -20,7 +20,7 @@ def login_page(request):
             else:
                 messages.warning(request, 'No a sido posible ingresar')
 
-        return render(request, 'login/login.html')
+        return render(request, 'registration/login.html')
 
 
 def register(request):
