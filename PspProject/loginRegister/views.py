@@ -41,6 +41,6 @@ def register(request):
             'register_form' : register_form,
         })
 
-def logout_user(request):
+def logout_usert(request):
     logout(request)
-    return redirect ('login')
+    return redirect ('/log_in')

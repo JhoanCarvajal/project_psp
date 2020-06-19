@@ -23,9 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('modulos/', views.modulos, name='modulos'),
     path('proyectos/', views.proyectos, name='proyectos'),
-    path('login/', loginss.login_page, name='login'),
+    path('log_in/', loginss.login_page, name='log_in'),
     path('register/', loginss.register, name='register'),
-    path('logout/', loginss.logout_user, name='logout'),
+    path('logout_page/', loginss.logout_usert, name='logout_page'),
     # para poder incluir lo de reset pass
     path('accounts/', include('django.contrib.auth.urls')),
 
