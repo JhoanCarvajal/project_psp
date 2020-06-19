@@ -32,34 +32,6 @@
 </head>
 <body class="skin-default-dark fixed-layout">
 
-<div class="das">
-    <ul>
-        {% if user.email %}
-            <li>
-                <h3>{{request.user.first_name}}</h3>
-            </li>
-        
-        {% endif %}
-        <li>
-            <a href="{% url 'proyectos' %}">proyectos</a>
-        </li>
-
-        <li>
-            <a href="{% url 'modulos' %}">modulos</a>
-        </li>
-
-        {% if user.email %}
-            <li>
-                <a href="{% url 'logout_page' %}">Cerrar sisión</a>
-            </li>
-        {% else %}
-            <li>
-                <a href="{% url 'log_in' %}">Ingresar</a>
-            </li>
-        {% endif %}
-
-
-    </ul>
 </div>
 
         <aside class="left-sidebar">        
