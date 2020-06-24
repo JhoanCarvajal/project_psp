@@ -34,7 +34,7 @@ def register(request):
             if register_form.is_valid():
                 register_form.save()
                 messages.success(request, 'Te has registrado correctamente')
-                return redirect('/login')
+                return redirect('/log_in')
                 
 
         return render(request, 'register/register.html',{
