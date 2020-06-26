@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -24,5 +25,21 @@ class Medida(models.Model):
     
     def __str__(self):
         return self.nombre
+
+
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    img = models.CharField(max_length=200, null=True, blank=True)
+    rol = models.CharField(max_length=50)
+    lenguaje = models.ForeignKey(Lenguaje, on_delete=models.CASCADE)
+    medida = models.ForeignKey(Medida, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name ="Perfil del usuario"
+        verbose_name_plural ="Perfiles de usuarios"
+    
+    def __str__(self):
+        return self.user
+
 
     
