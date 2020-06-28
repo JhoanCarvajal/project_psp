@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from mainApp import views
 from loginRegister import views as loginss
+from perfilEdit import views as editPerfil
 
 urlpatterns = [
     path('', loginss.login_page), 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('log_in/', loginss.login_page, name='log_in'),
     path('register/', loginss.register, name='register'),
     path('logout_page/', loginss.logout_usert, name='logout_page'),
+    path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     # para poder incluir lo de reset pass
     path('accounts/', include('django.contrib.auth.urls')),
 
