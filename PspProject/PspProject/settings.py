@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainApp.apps.MainappConfig',
     'proyecto.apps.ProyectoConfig',
+    'perfilEdit',
 ]
 
 MIDDLEWARE = [
