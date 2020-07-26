@@ -47,6 +47,12 @@ INSTALLED_APPS = [
     'pips',
     'registroTiempos',
     'registroDefectos',
+    'reportes',
+    'calendarios',
+    'partesAñadidas',
+    'partesGenerales',
+    'partesReusadas',
+    'partesBases',
 ]
 
 MIDDLEWARE = [
