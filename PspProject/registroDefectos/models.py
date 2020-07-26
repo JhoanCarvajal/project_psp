@@ -6,9 +6,10 @@ class RegistroDefecto(models.Model):
     id_tipo_defecto = models.ForeignKey("mainApp.TiposDefecto", verbose_name="Defecto", on_delete=models.CASCADE)
     fecha_encontrado = models.DateTimeField(verbose_name="Fecha encontrado", null=True, blank=True)
     fecha_removido = models.DateTimeField(verbose_name="Fecha removido", null=True, blank=True)
-    id_fase_creacion = models.ForeignKey("mainApp.Fase", verbose_name="Fase creación", on_delete=models.CASCADE)
-    id_fase_eliminacion = models.ForeignKey("mainApp.Fase", verbose_name="Fase eliminación", on_delete=models.CASCADE)
+    id_fase_creacion = models.ForeignKey("mainApp.Fase", related_name="mainapps_fases_related_creacion", verbose_name="Fase creación", on_delete=models.CASCADE)
+    id_fase_eliminacion = models.ForeignKey("mainApp.Fase", related_name="mainapps_fases_related_finalizacion", verbose_name="Fase eliminación", on_delete=models.CASCADE)
     tiempo_arreglo = models.IntegerField(verbose_name="Tiempo duracion de arreglo")
+    #related_name="%(mainapp)s_%(fase)s_related_finalizacion",
 
     class Meta:
         verbose_name = "Registro de defecto"
