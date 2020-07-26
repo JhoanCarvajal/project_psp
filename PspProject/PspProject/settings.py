@@ -39,8 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainApp.apps.MainappConfig',
-    'proyecto.apps.ProyectoConfig',
+    'proyectos.apps.ProyectosConfig',
+    'profesores',
+    'estudiantes',
+    'programas',
     'perfilEdit',
+    'pips',
+    'registroTiempos',
+    'registroDefectos',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'proyecto.context_processors.get_proyecto',
+                'proyectos.context_processors.get_proyecto',
             ],
         },
     },

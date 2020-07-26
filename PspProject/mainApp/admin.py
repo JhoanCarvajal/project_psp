@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Lenguaje, Medida, Perfil
+from .models import Lenguaje, Medida, Proceso, Fase, TiposDefecto, TiposParte, TamañoItem
 
 # Register your models here.
 class LenguajeAdmin(admin.ModelAdmin):
@@ -10,6 +10,22 @@ class MedidaAdmin(admin.ModelAdmin):
     list_display= ('nombre',)
 admin.site.register(Medida,MedidaAdmin)
 
-class PerfilAdmin(admin.ModelAdmin):
-    list_display= ('user',)
-admin.site.register(Perfil,PerfilAdmin)
+class ProcesoAdmin(admin.ModelAdmin):
+    list_display= ('nombre',)
+admin.site.register(Proceso,ProcesoAdmin)
+
+class FaseAdmin(admin.ModelAdmin):
+    list_display= ('nombre',)
+admin.site.register(Fase,FaseAdmin)
+
+class TiposDefectoAdmin(admin.ModelAdmin):
+    list_display= ('nombre',)
+admin.site.register(TiposDefecto,TiposDefectoAdmin)
+
+class TiposParteAdmin(admin.ModelAdmin):
+    list_display= ('nombre',)
+admin.site.register(TiposParte,TiposParteAdmin)
+
+class TamañoItemAdmin(admin.ModelAdmin):
+    list_display= ('nombre',)
+admin.site.register(TamañoItem,TamañoItemAdmin)
