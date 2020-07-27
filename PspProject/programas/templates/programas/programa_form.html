@@ -1,0 +1,71 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
+
+<!-- project style -->
+    <h1>Proyectos</h1>
+    <div class="row mb-5" onload="activarModal()">
+        {% for proyecto in proyectos %}
+            <div class="col-sm-6 mt-5 container" style="max-width: 30rem;">
+                <div class="box-projecto card" >
+                    <div class="card-body">
+                        
+                        
+                        <h5 class="card-title">{{proyecto.1}} </h5>
+                        <h5>PSP</h5>
+                        <p>{{proyecto.2}} </p>
+                        <h5 class="card-title">Descripción</h5>
+                        <div class="scroll-project-description">
+                            <p class="card-text">{{proyecto.3}} </p>
+                        </div>
+                        
+                        <h5 class="card-title">Fecha de creacion</h5>
+                        <p>{{proyecto.4}} </p>
+                        
+                        <a href="#" class="btn btn-primary">Ver programas</a>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#modalCreateProgram" href="{% url 'program_create'%}">Crear programa</a>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <!-- Modal create program-->
+    <div class="modal fade" id="modalCreateProgram" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+        <div class="modal-dialog" >
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Crea tu programa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">{% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                        <input type="submit" class="btn btn-primary btn-block" value="Crear programa" />
+                        </div>
+                    </form>
+                </div>           
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        
+        function modalForm(idProject,nombreProyecto){
+            $('#idProjectF').val(idProject);
+            document.getElementById("p").innerHTML += idProject
+        }
+        function activarModal(){
+
+        }
+        
+    </script>
+{% endblock content %}
+ 

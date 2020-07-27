@@ -80,6 +80,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'proyectos.context_processors.get_proyecto',
                 'mainApp.context_processors.get_programasDeUsuario',
+                'mainApp.context_processors.get_lenguajes',
+                'mainApp.context_processors.get_medidas',
             ],
         },
     },
