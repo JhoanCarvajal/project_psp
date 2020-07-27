@@ -1,0 +1,111 @@
+
+<div class="card mb-5"> 
+    <div class="card-header">
+        <h3>Regitro de tiempo</h3>
+    </div>
+    <div class="card-body row"> 
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Actual</th>
+                    <th scope="col">To-Date</th>
+                    <th scope="col">To-Date %</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Plan</th>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <th scope="row">DLD</th>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <th scope="row">CODE</th>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <th scope="row">Comple</th>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <th scope="row">UT</th>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <th scope="row">PM</th>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <th scope="row">CODE</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
+            Registrar tiempo
+        </button>
+</div>
+
+
+<!-- Modal edit information -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Nombre de usuario</label>
+                <input class="form-control mb-3" type="text"  id="username" disabled></input>
+                <label>Correo</label>
+                <input class="form-control mb-3" type="text"  id="emailUser"></input>
+                <label>Nombre</label>
+                <input class="form-control mb-3" type="text"  id="nombreUser"></input>
+                <label>Apellido</label>
+                <input class="form-control mb-3" type="text"  id="apellidoUser"></input>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function modalForm(username,email,nombre,apellido){
+        $('#username').val(username),
+        $('#emailUser').val(email),
+        $('#nombreUser').val(nombre),
+        $('#apellidoUser').val(apellido)  
+    }
+</script>

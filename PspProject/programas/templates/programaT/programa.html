@@ -6,27 +6,11 @@
     <h1>{{title}}</h1>
     <h3>Nombre del programa</h3>
     <div class="container mb-5"> 
-        <div class="card"> 
-            <div class="card-body row"> 
-                <div class="form-group col-sm-6">
-                    <label for="nameUser">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="nameUser" value="{{request.user.username}}" disabled>
-                    <label for="userCorreo">Correo</label>
-                    <input type="email" class="form-control" id="userCorreo" value="{{request.user.email}}" disabled>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" value="{{request.user.first_name}}" disabled>
-                    <label for="userApellido">Apellidos</label>
-                    <input type="text" class="form-control" id="userApellido" value="{{request.user.last_name}}" disabled>
-                </div>
-            </div>
-            
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
-                Editar
-            </button>
-            
-        </div>   
+        {% include 'programaT/include/info.html' %}  
+
+        {% include 'programaT/include/registroTiempos.html' %}
+
+
     </div>
 
     <h1>Otros</h1>
@@ -58,6 +42,8 @@
         </div>
     </div>
     </div>
+
+    
 
 
 

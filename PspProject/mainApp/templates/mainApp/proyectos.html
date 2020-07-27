@@ -24,10 +24,8 @@
                         <h5 class="card-title">Fecha de creacion</h5>
                         <p>{{proyecto.4}} </p>
                         
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{proyecto.0}}','{{proyecto.1}}')">
-                        <a href="{% url 'lista_programas_usuario' proyecto.0 %}"></a>
-                            Empesar proyecto
-                        </button>
+                        <a href="#" class="btn btn-primary">Ver programas</a>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateProgram">Crear programa</button>
                     </div>
                 </div>
             </div>
@@ -35,74 +33,52 @@
     </div>
 
 
-    <!-- Modal programs-->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Programas</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="scroll-project-description" style=" min-height: 60vh;">
-                <input type="text" hidden="" id="idProject"></input>
-                
-                <!--Este for hay que adaptarlo para que muestre todos los datos de cada uno de los programas correspondientes al 
-                usuario que el alla creado en el proyecto correspondiente-->
-                {% block programasUsuario %}
-                {% endblock programasUsuario %}
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreateProgram">Crear programa</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-
-
     <!-- Modal create program-->
-    <div class="modal fade" id="modalCreateProgram" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Programas</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="scroll-project-description" style=" min-height: 60vh;">
-                <input type="text" hidden="" id="idProject"></input>
-                
-                <!--Este for hay que adaptarlo para que muestre todos los datos de cada uno de los programas correspondientes al 
-                usuario que el alla creado en el proyecto correspondiente-->
-                {% for proyecto in proyectos %}
-                    <div class="card mb-2 mt-2">
-                        <div class="card-header">
-                            <p>Nombre del programa</p>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Fecha de creacion</h5>
-                            <h5 class="card-title">Fase del programa</h5>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+    <div class="modal fade" id="modalCreateProgram" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+        <div class="modal-dialog" >
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Crea tu programa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body " >
+                        <label>Nombre</label>
+                        <input class="form-control mb-3" type="text"></input>
+                        <label>Descripción</label>
+                        <input class="form-control mb-3" type="text"></input>
 
+                        <div class="input-group mb-3">
+                            <select class="custom-select">
+                                <option selected>lenguajes</option>
+                                <!--aqui se inclulle un for para que muestre todos los lenguajes que hay 
+                                registrados en la base de datos-->
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>  
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="custom-select">
+                                <option selected>Medidas</option>
+                                <!--aqui se inclulle un for para que muestre todos las medidas que hay 
+                                registrados en la base de datos-->
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar y cerrar</button>
+                        <button type="button" class="btn btn-success">Guardar y seguir</button>
+                    </div>
+                </form>             
+            </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Guardar y cerrar</button>
-            <button type="button" class="btn btn-success">Guardar y seguir</button>
-        </div>
-        </div>
-    </div>
     </div>
 
     <script type="text/javascript">
