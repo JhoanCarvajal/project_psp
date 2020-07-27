@@ -6,7 +6,7 @@
 
 <!-- project style -->
     <h1>Proyectos</h1>
-    <div class="row mb-5">
+    <div class="row mb-5" onload="activarModal()">
         {% for proyecto in proyectos %}
             <div class="col-sm-6 mt-5 container" style="max-width: 30rem;">
                 <div class="box-projecto card" >
@@ -22,13 +22,11 @@
                         </div>
                         
                         <h5 class="card-title">Fecha de creacion</h5>
-                        <a href="{% url 'program_create' %}">Crear un programa</a>
                         <p>{{proyecto.4}} </p>
                         
                         <a href="#" class="btn btn-primary">Ver programas</a>
-                        <a href="{% url 'program_create' %}"
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateProgram">Crear programa</button>
-                        </a>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#modalCreateProgram" href="{% url 'program_create'%}">Crear programa</a>
+                        
                     </div>
                 </div>
             </div>
@@ -57,10 +55,15 @@
     </div>
 
     <script type="text/javascript">
+        
         function modalForm(idProject,nombreProyecto){
             $('#idProjectF').val(idProject);
             document.getElementById("p").innerHTML += idProject
         }
+        function activarModal(){
+
+        }
         
     </script>
 {% endblock content %}
+ 
