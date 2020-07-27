@@ -46,5 +46,42 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<<<<<<< HEAD
+=======
+
+    <!-- Modal create program-->
+    <div class="modal fade" id="modalCreateProgram" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+        <div class="modal-dialog" >
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Crea tu programa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">{% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                        <input type="submit" class="btn btn-primary btn-block" value="Crear programa" />
+                        </div>
+                    </form>
+                </div>           
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        
+        function modalForm(idProject,nombreProyecto){
+            $('#idProjectF').val(idProject);
+            document.getElementById("p").innerHTML += idProject
+        }
+        function activarModal(){
+
+        }
+        
+    </script>
+>>>>>>> dc8500e1c2e0f25fbedbfbf9b12bbe07ec93490d
 {% endblock content %}
  
