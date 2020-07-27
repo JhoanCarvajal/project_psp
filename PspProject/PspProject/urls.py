@@ -32,6 +32,8 @@ urlpatterns = [
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     path('programa/',programaP.programa, name='programa'),
     path('programas/',programaP.programas, name='programas'),
+    path('defectos/',programaP.defectos, name='defectos'),
+    path('listaDefesctos/',programaP.listaDefesctos, name='listaDefectos'),
     #url para mostrar programas
     path('programas/<int:id_proyecto>/', views.programasDeUsuarios, name='lista_programas_usuario'),
 

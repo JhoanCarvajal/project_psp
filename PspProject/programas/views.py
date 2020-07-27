@@ -22,6 +22,16 @@ def programas(request):
         'title':'Programas'
     })
 
+def defectos(request):
+    return render(request,'programaT/defectos.html',{
+        'title':'Defectos'
+    })
+
+def listaDefesctos(request):
+    return render(request,'programaT/listaDefectos.html',{
+        'title':'Lista de defectos'
+    })
+
 class ProgramaCreate(CreateView):
     model = Programa
     form_class = ProgramaForm

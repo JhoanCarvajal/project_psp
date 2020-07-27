@@ -65,9 +65,10 @@
             </tbody>
         </table>
     </div>
-        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
-            Registrar tiempo
-        </button>
+    
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
+        Registrar tiempo
+    </button>
 </div>
 
 
@@ -101,15 +102,15 @@
                             <input type="date" class="form-control mb-3"  ></input> 
                             <input class="form-control mb-3" type="text"></input> 
                         </div>  
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-sm-6 ">
                             <input type="date" class="form-control mb-3"></input> 
                             <input class="form-control mb-3" type="text" disabled value="42"></input>
                             <input class="form-control mb-3" type="text"></input> 
                         </div> 
-                        <div class="icol-sm-12 mb-3">
-                            <button type="sutmid" class="btn btn-success">Guardar</button>
-                        </div>
                     </div> 
+                    <div class="mx-auto mb-5" style="width: 200px;">
+                        <button type="sutmid" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+                    </div>
                 </form>
 
 
@@ -159,21 +160,6 @@
                         </tr>
                     </tbody>
                 </table>
-                
-
-
-                <label>Nombre de usuario</label>
-                <input class="form-control mb-3" type="text"  id="username" disabled></input>
-                <label>Correo</label>
-                <input class="form-control mb-3" type="text"  id="emailUser"></input>
-                <label>Nombre</label>
-                <input class="form-control mb-3" type="text"  id="nombreUser"></input>
-                <label>Apellido</label>
-                <input class="form-control mb-3" type="text"  id="apellidoUser"></input>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
