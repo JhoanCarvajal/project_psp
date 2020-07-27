@@ -6,6 +6,7 @@ from .forms import ProgramaForm
 from proyectos.models import Proyecto
 
 
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
@@ -32,6 +33,9 @@ class ProgramaListView(ListView):
         context["id_p"] = Proyecto.objects.get(id=self.kwargs.get('id_p'))
         context["id_u"] = User.objects.get(id=self.kwargs.get('id_u'))
         return context
+
+class ProgramaDetailView(DetailView):
+    model = Programa
 
 class ProgramaCreate(CreateView):
     model = Programa
