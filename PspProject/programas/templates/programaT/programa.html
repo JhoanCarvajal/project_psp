@@ -13,46 +13,4 @@
 
     </div>
 
-    <h1>Otros</h1>
-    
-     <!-- Modal edit information -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <label>Nombre de usuario</label>
-                <input class="form-control mb-3" type="text"  id="username" disabled></input>
-                <label>Correo</label>
-                <input class="form-control mb-3" type="text"  id="emailUser"></input>
-                <label>Nombre</label>
-                <input class="form-control mb-3" type="text"  id="nombreUser"></input>
-                <label>Apellido</label>
-                <input class="form-control mb-3" type="text"  id="apellidoUser"></input>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    
-
-
-
-    <script type="text/javascript">
-        function modalForm(username,email,nombre,apellido){
-            $('#username').val(username),
-            $('#emailUser').val(email),
-            $('#nombreUser').val(nombre),
-            $('#apellidoUser').val(apellido)  
-        }
-    </script>
 {% endblock content %}

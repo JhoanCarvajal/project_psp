@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from programas.models import Programa
 from django.views import generic
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -13,9 +14,14 @@ def modulos(request):
     
 @login_required(login_url='login')
 def proyectos(request):
-    return render(request, 'mainApp/proyectos.html',{
-        'title':'Proyectos'
-    })
+    if request.method == 'POST':
+        nombre=request.POST['nombre']
+        return HttpResponse(nombre)
+    else:
+        return render(request, 'mainApp/proyectos.html',{
+            'title':'Proyectos'
+        })
+        
 
 @login_required(login_url='login')
 def programasDeUsuarios(request, id_proyecto):
