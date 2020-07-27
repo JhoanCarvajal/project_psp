@@ -3,8 +3,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Programa
 from django.contrib.auth.models import User
 from .forms import ProgramaForm
+from proyectos.models import Proyecto
 
 
+from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
 
@@ -22,9 +24,24 @@ def programas(request):
         'title':'Programas'
     })
 
+class ProgramaListView(ListView):
+    model = Programa 
+    def get_context_data(self, **kwargs):
+        context = super(ProgramaListView, self).get_context_data(**kwargs)
+        context["programas"] = Programa.objects.filter(id_usuario=self.kwargs.get('id_u'), id_proyecto=self.kwargs.get('id_p'))
+        context["id_p"] = Proyecto.objects.get(id=self.kwargs.get('id_p'))
+        context["id_u"] = User.objects.get(id=self.kwargs.get('id_u'))
+        return context
+
 class ProgramaCreate(CreateView):
     model = Programa
     form_class = ProgramaForm
-    success_url = reverse_lazy('proyectos')
+    success_url = reverse_lazy('proyectos', )
+    
+    def get_context_data(self, **kwargs):
+        context = super(ProgramaCreate, self).get_context_data(**kwargs)
+        context["id_p"] = Proyecto.objects.get(id=self.kwargs.get('id_p'))
+        context["id_u"] = User.objects.get(id=self.kwargs.get('id_u'))
+        return context
 
     

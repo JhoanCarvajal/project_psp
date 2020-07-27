@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import ProgramaCreate
+from .views import ProgramaCreate, ProgramaListView
 
 urlpatterns = [
-    # path('crear_programa/', crear_programa, name='crear_programa'),
-    path('create/', ProgramaCreate.as_view(), name='program_create'),
+    path('lista/<int:id_u>/<int:id_p>/', ProgramaListView.as_view(), name='lista_programas_usuario'),
+    path('crear/<int:id_u>/<int:id_p>/', ProgramaCreate.as_view(), name='program_create'),
 ]
