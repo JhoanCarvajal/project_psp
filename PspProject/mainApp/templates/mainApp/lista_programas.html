@@ -4,16 +4,17 @@
 
 {% block programasUsuario %}
 {% for programa in lista_programas %}
+    {% if programa.id_usuario.id == request.user.id and programa.id_proyecto.id == id_pro%}
         <div class="card mb-2 mt-2">
             <div class="card-header">
-                <p>{{programa.id_usuario.id}} == {{request.user.id}}</p>
-                <p>{{programa.id_proyecto.id}} == {{id_pro}}</p>
+                <p>{{programa.nombre}}</p>
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{programa.fecha_creacion}}</h5>
                 <h5 class="card-title">{{programa.id_lenguaje}}</h5>
-                <a href="#" class="btn btn-primary">Entrar al programa</a>
+                <a href="{% url 'detalles de programa' programa.id programa.nombre|slugify %}" class="btn btn-primary">Entrar al programa</a>
             </div>
         </div>
+    {% endif %}
 {% endfor %}
 {% endblock programasUsuario %}

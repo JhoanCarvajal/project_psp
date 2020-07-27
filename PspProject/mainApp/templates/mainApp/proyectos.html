@@ -23,11 +23,11 @@
                         
                         <h5 class="card-title">Fecha de creacion</h5>
                         <p>{{proyecto.4}} </p>
-                        <a href="{% url 'lista_programas_usuario' proyecto.0 %}">
+                        
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{proyecto.0}}','{{proyecto.1}}')">
+                        <a href="{% url 'lista_programas_usuario' proyecto.0 %}"></a>
                             Empesar proyecto
                         </button>
-                        </a>
                     </div>
                 </div>
             </div>
