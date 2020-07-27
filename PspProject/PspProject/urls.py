@@ -30,6 +30,9 @@ urlpatterns = [
     path('logout_page/', loginss.logout_usert, name='logout_page'),
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     path('programa/',programaP.programa, name='programa'),
+    #url para mostrar programas
+    path('programas/<int:id_proyecto>/', views.programasDeUsuarios, name='lista_programas_usuario'),
+
     # para poder incluir lo de reset pass
     path('accounts/', include('django.contrib.auth.urls')),
 

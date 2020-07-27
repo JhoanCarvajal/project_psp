@@ -3,6 +3,7 @@
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
+
 <!-- project style -->
     <h1>Proyectos</h1>
     <div class="row mb-5">
@@ -22,9 +23,11 @@
                         
                         <h5 class="card-title">Fecha de creacion</h5>
                         <p>{{proyecto.4}} </p>
+                        <a href="{% url 'lista_programas_usuario' proyecto.0 %}">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{proyecto.0}}','{{proyecto.1}}')">
                             Empesar proyecto
                         </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -48,20 +51,9 @@
                 
                 <!--Este for hay que adaptarlo para que muestre todos los datos de cada uno de los programas correspondientes al 
                 usuario que el alla creado en el proyecto correspondiente-->
-                {% for proyecto in proyectos %}
-                    <div class="card mb-2 mt-2">
-                        <div class="card-header">
-                            <p>Nombre del programa</p>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Fecha de creacion</h5>
-                            <h5 class="card-title">Fase del programa</h5>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                {% endfor %}
+                {% block programasUsuario %}
+                {% endblock programasUsuario %}
             </div>
-
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -115,9 +107,9 @@
 
     <script type="text/javascript">
         function modalForm(idProject,nombreProyecto){
-            $('#idProjectF').val(idProject)
+            $('#idProjectF').val(idProject);
+            document.getElementById("p").innerHTML += idProject
         }
-
         
     </script>
 {% endblock content %}

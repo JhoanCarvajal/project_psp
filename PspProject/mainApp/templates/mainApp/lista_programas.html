@@ -1,0 +1,19 @@
+{% extends 'mainApp/proyectos.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block programasUsuario %}
+{% for programa in lista_programas %}
+        <div class="card mb-2 mt-2">
+            <div class="card-header">
+                <p>{{programa.id_usuario.id}} == {{request.user.id}}</p>
+                <p>{{programa.id_proyecto.id}} == {{id_pro}}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{programa.fecha_creacion}}</h5>
+                <h5 class="card-title">{{programa.id_lenguaje}}</h5>
+                <a href="#" class="btn btn-primary">Entrar al programa</a>
+            </div>
+        </div>
+{% endfor %}
+{% endblock programasUsuario %}
