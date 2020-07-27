@@ -44,12 +44,14 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="post">{% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="text-center">
-                    <input type="submit" class="btn btn-primary btn-block" value="Crear programa" />
-                    </div>
-                </form>           
+                <div class="modal-body">
+                    <form action="" method="post">{% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                        <input type="submit" class="btn btn-primary btn-block" value="Crear programa" />
+                        </div>
+                    </form>
+                </div>           
             </div>
         </div>
     </div>
