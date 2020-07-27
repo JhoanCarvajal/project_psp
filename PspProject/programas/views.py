@@ -8,3 +8,9 @@ def programa(request):
     return render(request,'programaT/programa.html',{
         'title':'Programa'
     })
+
+
+def programas(request):
+    return render(request,'programaT/programas.html',{
+        'title':'Programas'
+    })

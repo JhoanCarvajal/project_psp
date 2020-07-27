@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout_page/', loginss.logout_usert, name='logout_page'),
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     path('programa/',programaP.programa, name='programa'),
+    path('programas/',programaP.programas, name='programas'),
     #url para mostrar programas
     path('programas/<int:id_proyecto>/', views.programasDeUsuarios, name='lista_programas_usuario'),
 
