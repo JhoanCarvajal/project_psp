@@ -4,91 +4,26 @@
 
 {% block content %}
     <h1>{{title}}</h1>
-    <!--este card representa un proyecto-->
-    <div class="card mb-3">
-        <div class="card-header">
-            <h3>Proyecto: Nombre del proyecto</h3>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <!-- cada "col-sm-6 mb-3" de estos representa un programa 
-                    una idea para hacer esto es poniendo un for para los proyectos y dentro de ese for 
-                    tener otro for para los programas -->
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del programa</h5>
-                            <p class="card-text">Lenguaje</p>
-                            <p class="card-text">Fecha de creacion</p>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del programa</h5>
-                            <p class="card-text">Lenguaje</p>
-                            <p class="card-text">Fecha de creacion</p>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del programa</h5>
-                            <p class="card-text">Lenguaje</p>
-                            <p class="card-text">Fecha de creacion</p>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
+    
+    <div class="row">
+        {% for j in contes %}
+        {% if j.id_usuario_id == request.user.id %}
+            <div class="col-sm-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{j.nombre}}</h5>
+                        <p class="card-text">{{j.id_lenguaje}}</p>
+                        <p class="card-text">{{j.fecha_creacion}}</p>
+                        <p class="card-text">{{j.id_proyecto}}</p>
+                        <a href="{% url 'detalles_programa' j.id j.nombre|slugify %}" class="btn btn-primary">Entrar al programa</a>
                     </div>
                 </div>
             </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
-    <div class="card mb-3">
-        <div class="card-header">
-            <h3>Proyecto: Nombre del proyecto</h3>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <!-- cada "col-sm-6 mb-3" de estos representa un programa 
-                    una idea para hacer esto es poniendo un for para los proyectos y dentro de ese for 
-                    tener otro for para los programas -->
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del programa</h5>
-                            <p class="card-text">Lenguaje</p>
-                            <p class="card-text">Fecha de creacion</p>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del programa</h5>
-                            <p class="card-text">Lenguaje</p>
-                            <p class="card-text">Fecha de creacion</p>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del programa</h5>
-                            <p class="card-text">Lenguaje</p>
-                            <p class="card-text">Fecha de creacion</p>
-                            <a href="#" class="btn btn-primary">Entrar al programa</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        
+   
     
 
 {% endblock content %}

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'partesGenerales',
     'partesReusadas',
     'partesBases',
+    'graficos',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,7 @@ TEMPLATES = [
                 'mainApp.context_processors.get_programasDeUsuario',
                 'mainApp.context_processors.get_lenguajes',
                 'mainApp.context_processors.get_medidas',
+                'mainApp.context_processors.get_fases',
             ],
         },
     },

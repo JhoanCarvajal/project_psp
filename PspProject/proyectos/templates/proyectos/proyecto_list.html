@@ -1,0 +1,31 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
+    <h1>Proyectos</h1>
+    <div class="row mb-5">
+        {% for proyecto in proyecto_list %}
+            <div class="col-sm-6 mt-5 container" style="max-width: 30rem;">
+                <div class="box-projecto card" >
+                    <div class="card-body">
+                        <h5 class="card-title">{{proyecto.nombre}} </h5>
+                        <h5>PSP</h5>
+                        <p>{{proyecto.id_proceso}} </p>
+                        <h5 class="card-title">Descripción</h5>
+                        <div class="scroll-project-description">
+                            <p class="card-text">{{proyecto.descripcion}} </p>
+                        </div>
+                        
+                        <h5 class="card-title">Fecha de creacion</h5>
+                        <p>{{proyecto.fechaInicio|date}} </p>
+                        
+                        <a href="{% url 'lista_programas_usuario' request.user.id proyecto.id %}" class="btn btn-primary">Ver programas</a>
+                        <a class="btn btn-success" href="{% url 'program_create' request.user.id proyecto.id %}">Crear programa</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

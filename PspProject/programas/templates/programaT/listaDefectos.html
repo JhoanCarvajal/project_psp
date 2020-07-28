@@ -1,0 +1,56 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
+    <div class="container mb-5">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3>Lista de defectos</h3>
+                <a class="btn btn-primary" href="{% url 'defectos' %}" role="button">Agregar Defecto</a>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Solucion</th>
+                        <th scope="col">Comentario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>404</td>
+                        <th>10/10/2020</th>
+                        <td>un error muy lindo</td>
+                        <td>ninguna</td>
+                        <td>la descriopcion</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <th>10/10/2020</th>
+                        <td>un error muy lindo</td>
+                        <td>ninguna</td>
+                        <td>la descriopcion</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <th>10/10/2020</th>
+                        <td>un error muy lindo</td>
+                        <td>ninguna</td>
+                        <td>la descriopcion</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <th>10/10/2020</th>
+                        <td>un error muy lindo</td>
+                        <td>ninguna</td>
+                        <td>la descriopcion</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+
+{% endblock content %}

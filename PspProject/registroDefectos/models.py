@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class RegistroDefecto(models.Model):
-    id_programa = models.ForeignKey("programas.Programa", verbose_name="proyecto", on_delete=models.CASCADE)
+    id_programa = models.ForeignKey("programas.Programa", verbose_name="Programa", on_delete=models.CASCADE)
     id_tipo_defecto = models.ForeignKey("mainApp.TiposDefecto", verbose_name="Defecto", on_delete=models.CASCADE)
     fecha_encontrado = models.DateTimeField(verbose_name="Fecha encontrado", null=True, blank=True)
     fecha_removido = models.DateTimeField(verbose_name="Fecha removido", null=True, blank=True)
@@ -17,4 +17,4 @@ class RegistroDefecto(models.Model):
         ordering = ['id_tipo_defecto', 'fecha_encontrado']
 
     def __str__(self):
-        return self.fecha_encontrado
+        return self.id_programa.nombre
