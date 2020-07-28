@@ -1,8 +1,14 @@
 <div class="card mb-5"> 
     <div class="card-header">
         <h3>Defectos ingresados</h3>
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modalDefectos">
+            Ingresar defecto
+        </button>
+        <a class="btn btn-primary" data-toggle="collapse" href="#callapseDefestosIngresados" role="button" aria-expanded="false" aria-controls="callapseDefestosIngresados">
+            <i class="fas fa-angle-down"></i>
+        </a>
     </div>
-    <div class="card-body row"> 
+    <div class="card-body row collapse" id="callapseDefestosIngresados"> 
         <table class="table">
             <thead>
                 <tr>
@@ -50,10 +56,6 @@
             </tbody>
         </table>
     </div>
-    
-    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalDefectos">
-        Ingresar defecto
-    </button>
 </div>
 
 
