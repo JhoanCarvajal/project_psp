@@ -5,7 +5,7 @@
 {% load static %}
 {% block content %}
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal_crear_programa">
+<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="modal_crear_programa">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -46,37 +46,5 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
-    <!-- Modal create program-->
-    <div class="modal fade" id="modalCreateProgram" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-        <div class="modal-dialog" >
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Crea tu programa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">{% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="text-center">
-                        <input type="submit" class="btn btn-primary btn-block" value="Crear programa" />
-                        </div>
-                    </form>
-                </div>           
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        
-        function modalForm(idProject,nombreProyecto){
-            $('#idProjectF').val(idProject);
-            document.getElementById("p").innerHTML += idProject
-        }
-        
-        
-    </script>
 {% endblock content %}
  

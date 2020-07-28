@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'partesGenerales',
     'partesReusadas',
     'partesBases',
+    'graficos',
 ]
 
 MIDDLEWARE = [
