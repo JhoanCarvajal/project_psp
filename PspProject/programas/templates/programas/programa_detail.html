@@ -3,6 +3,10 @@
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
+
+
+
+
     <h1>{{title}}</h1>
     <div class="row">
         <div class="col clearfix">
@@ -19,6 +23,10 @@
         {% include 'programas/includes/defectosIngresados.html' %}
         
         {% include 'programas/includes/tamañoPlantilla.html' %}
-    </div>
+
+        {% include 'programas/includes/partesAñadidas.html' %}
+
+        {% include 'programas/includes/parteReusada.html' %}
+
 
 {% endblock content %}
