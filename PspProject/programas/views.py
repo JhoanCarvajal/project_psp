@@ -4,6 +4,8 @@ from .models import Programa
 from django.contrib.auth.models import User
 from .forms import ProgramaForm
 from proyectos.models import Proyecto
+from mainApp.models import Lenguaje, Medida
+from registroDefectos.models import RegistroDefecto
 
 
 from django.views.generic.detail import DetailView
@@ -45,6 +47,10 @@ class ProgramaListView(ListView):
 
 class ProgramaDetailView(DetailView):
     model = Programa
+    def get_context_data(self, **kwargs):
+        context = super(ProgramaDetailView, self).get_context_data(**kwargs)
+        context["defectos"] = RegistroDefecto.objects.filter(id_programa=self.kwargs.get('pk'))
+        return context
 
 class ProgramaCreate(CreateView):
     model = Programa

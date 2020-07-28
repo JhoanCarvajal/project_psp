@@ -1,3 +1,6 @@
-<p>{{programa.nombre }}</a>
-{{programa.id_usuario.email}}
-{{programa.id_lenguaje}}
+<p>{{programa.nombre }}</p>
+<p>{{programa.id_usuario.email}}</p>
+<p>{{programa.id_lenguaje}}</p>
+{% for defecto in defectos %}
+    {{defecto.id_tipo_defecto.nombre}}
+{% endfor %}
