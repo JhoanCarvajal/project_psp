@@ -2,8 +2,14 @@
 <div class="card mb-5"> 
     <div class="card-header">
         <h3>Regitro de tiempo</h3>
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#staticBackdrop">
+            Registrar tiempo
+        </button>
+        <a class="btn btn-primary" data-toggle="collapse" href="#callaseRegistroTiempo" role="button" aria-expanded="false" aria-controls="callaseRegistroTiempo">
+            <i class="fas fa-angle-down"></i>
+        </a>
     </div>
-    <div class="card-body row"> 
+    <div class="card-body row collapse" id="callaseRegistroTiempo"> 
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -15,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for d in datos %}
+                {% for d in datos %}
                     <tr>
                         <th scope="row">{{d.0}}</th>
                         <td>
@@ -25,7 +31,7 @@
                         <td>{{d.3}}</td>
                         <td>{{d.4}}%</td>
                     </tr>
-            {% endfor %}
+                {% endfor %}
                 <tr>
                     <th scope="row"></th>
                     <td colspan="2">Larry the Bird</td>
@@ -35,9 +41,7 @@
         </table>
     </div>
     
-    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
-        Registrar tiempo
-    </button>
+    
 </div>
 
 
@@ -133,15 +137,3 @@
         </div>
     </div>
 </div>
-
-
-
-<script type="text/javascript">
-    function modalForm(username,email,nombre,apellido){
-        $('#username').val(username),
-        $('#emailUser').val(email),
-        $('#nombreUser').val(nombre),
-        $('#apellidoUser').val(apellido)  
-    }
-</script>
-

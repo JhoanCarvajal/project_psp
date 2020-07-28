@@ -13,6 +13,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
+from programas.models import Programa
 
 
 # Create your views here.
@@ -24,8 +25,11 @@ def programa(request):
 
 
 def programas(request):
+    
+    cont=Programa.objects.all()
     return render(request,'programaT/programas.html',{
-        'title':'Programas'
+        'title':'Programas',
+        'contes':cont
     })
 
 def defectos(request):
@@ -37,6 +41,8 @@ def listaDefesctos(request):
     return render(request,'programaT/listaDefectos.html',{
         'title':'Lista de defectos'
     })
+
+    
 class ProgramaListView(ListView):
     model = Programa 
     def get_context_data(self, **kwargs):

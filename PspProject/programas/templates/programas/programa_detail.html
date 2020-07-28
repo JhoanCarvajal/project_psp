@@ -4,19 +4,20 @@
 
 {% block content %}
     <h1>{{title}}</h1>
-    <h3>{{programa.nombre}}</h3>
-    <div class="container mb-5"> 
-        
-        <a class="btn btn-primary mb-3" data-toggle="collapse" href="#pru" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">PSP 0.1</a>
-
+    <div class="row">
+        <div class="col clearfix">
+            <h3 class="float-left">{{programa.nombre}}</h3>
+            <button class="float-right btn btn-success float-right" type="button" >Realizar reporte</button> 
+        </div>
+    </div>
+    <div class="container mb-5 mt-3"> 
         
         {% include 'programas/includes/info.html' %}  
         
-        <div class="collapse multi-collapse" id="pru">
-            {% include 'programas/includes/registroTiempos.html' %}
+        {% include 'programas/includes/registroTiempos.html' %}
 
-            {% include 'programas/includes/defectosIngresados.html' %}
-        </div>
+        {% include 'programas/includes/defectosIngresados.html' %}
+        
         {% include 'programas/includes/tamañoPlantilla.html' %}
     </div>
 

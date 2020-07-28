@@ -1,11 +1,16 @@
 
-<div class="container mb-5">
-    <div class="card mt-5">
-        <div class="card-header">
-            <h3>Estimacion de plantillas</h3>
-            <a class="btn btn-primary" href="#" role="button">Agregar Defecto</a>
-        </div>
-        <table class="table">
+
+<div class="card mt-5 mb-5">
+    <div class="card-header">
+        <h3>Estimacion de plantillas</h3>
+        <a class="btn btn-primary" href="{% url 'defectos' %}" role="button">Agregar Defecto</a>
+        
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseEstimacion" role="button" aria-expanded="false" aria-controls="collapseEstimacion">
+            <i class="fas fa-angle-down"></i>
+        </a>
+    </div>
+    <div class="card-body row collapse" id="collapseEstimacion">
+        <table class="table " >
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
@@ -56,11 +61,12 @@
                             </tbody>
                         </table>
                     </td>
-
+        
                 </tr>
-               
+                
             </tbody>
         </table>
-    </div> 
-</div>
+    </div>
+</div> 
+
 
