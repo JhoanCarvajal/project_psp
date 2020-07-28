@@ -4,10 +4,11 @@ from .models import Programa
 from django.contrib.auth.models import User
 from .forms import ProgramaForm
 from proyectos.models import Proyecto
-from mainApp.models import Lenguaje, Medida
+from mainApp.models import Lenguaje, Medida, Fase
 from registroDefectos.models import RegistroDefecto
+from registroTiempos.models import RegistroTiempo
 
-
+from django.db.models import Sum
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -41,6 +42,16 @@ class ProgramaDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProgramaDetailView, self).get_context_data(**kwargs)
         context["defectos"] = RegistroDefecto.objects.filter(id_programa=self.kwargs.get('pk'))
+        tiempos_programa = RegistroTiempo.objects.filter(id_programa=self.kwargs.get('pk'))
+        context['fases'] = RegistroTiempo.objects.values('id_fase__nombre').annotate(Sum('tiempo_total'))
+        # fases = Fase.objects.all()
+        # suma = 0
+        # for fase in fases:
+        #     for tiempo in tiempos_programa:
+        #         if tiempo.id_fase.nombre == "PLAN":
+        #             suma += tiempo.tiempo_total
+
+        # context["promedio_plan"] = suma
         return context
 
 class ProgramaCreate(CreateView):

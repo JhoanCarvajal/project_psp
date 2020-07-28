@@ -15,4 +15,6 @@ class RegistroTiempo(models.Model):
         ordering = ['fecha_inicio', 'tiempo_total']
 
     def __str__(self):
-        return self.fecha_inicio
+        return self.comentarios
+
+    
