@@ -36,7 +36,7 @@
                 {% endfor %}
             </select>
             <label for="id_fecha_finalizacion">Fecha de finalización:</label>
-            <input type="text" name="fecha_finalizacion" class="form-control" placeholder="dd/mm/yyyy h:m:s" id="id_fecha_finalizacion"></p>
+            <input type="date" name="fecha_finalizacion" class="form-control" placeholder="dd/mm/yyyy h:m:s" id="id_fecha_finalizacion"></p>
             <div class="text-center">
             <input type="submit" class="btn btn-primary btn-block" value="Crear programa" />
             </div>
@@ -46,8 +46,6 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<<<<<<< HEAD
-=======
 
     <!-- Modal create program-->
     <div class="modal fade" id="modalCreateProgram" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
@@ -77,11 +75,8 @@
             $('#idProjectF').val(idProject);
             document.getElementById("p").innerHTML += idProject
         }
-        function activarModal(){
-
-        }
+        
         
     </script>
->>>>>>> dc8500e1c2e0f25fbedbfbf9b12bbe07ec93490d
 {% endblock content %}
  
