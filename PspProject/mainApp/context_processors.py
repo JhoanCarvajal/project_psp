@@ -1,5 +1,5 @@
 from programas.models import Programa
-from .models import Lenguaje, Medida
+from .models import Lenguaje, Medida, Fase
 
 def get_programasDeUsuario(request):
     programas= Programa.objects.all()
@@ -12,3 +12,7 @@ def get_lenguajes(request):
 def get_medidas(request):
     medidas = Medida.objects.all() 
     return {'lista_medidas':medidas}
+
+def get_fases(request):
+    fases = Fase.objects.all() 
+    return {'lista_fases':fases}
