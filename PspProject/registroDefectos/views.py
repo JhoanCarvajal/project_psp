@@ -9,7 +9,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 #modelos
 from programas.models import Programa
 from .models import RegistroDefecto
-from mainApp.models import Fase, TiposDefecto
+from mainApp.models import Fase
+from tiposDefectos.models import TiposDefecto
 #fomulario
 #from .forms import ProgramaForm
 from django.contrib.auth.decorators import login_required
