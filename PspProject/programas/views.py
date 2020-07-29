@@ -21,6 +21,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 #funciones
 from .funciones.resumen_tiempos import matrizResumenTiempos
 from .funciones.defectos_en_fase import defectos_en_fase
+from .funciones.defectos_removidos_fase import defectos_removidos_fase
 
 # Create your views here.
 @login_required(login_url='login')
@@ -71,8 +72,10 @@ class ProgramaDetailView(DetailView):
         fases = Fase.objects.all().order_by('id')
         defectos_programa = RegistroDefecto.objects.filter(id_programa__id=self.kwargs.get('pk'))
         cantidad_fases = Fase.objects.count()
-        #para resumen de defectos inyectados
+        #para resumen de defectos inyectados en fase
         context["defectos_ingresados"] = defectos_en_fase(defectos_programa, fases, cantidad_fases)
+        #para resumen de defectos removidos en fase
+        context["defectos_removidos"] = defectos_removidos_fase(defectos_programa, fases, cantidad_fases)
         
         #para resumen de tiempos
         context["datos"], context["total_actual"] = matrizResumenTiempos(tiempos_programa, fases, cantidad_fases)
