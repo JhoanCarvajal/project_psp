@@ -10,9 +10,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 #modelos
 from programas.models import Programa
 from .models import RegistroDefecto
-from mainApp.models import Fase, TiposDefecto
-#fomulario
-#from .forms import ProgramaForm
+from mainApp.models import Fase
+from tiposDefectos.models import TiposDefecto
 from django.template.defaultfilters import slugify
 
 # Create your views here.

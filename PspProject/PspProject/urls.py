@@ -27,6 +27,7 @@ urlpatterns = [
     path('proyectos/', include('proyectos.urls')),
     path('registroTiempos/', include('registroTiempos.urls')),
     path('registroDefectos/', include('registroDefectos.urls')),
+    path('tiposDefectos/', include('tiposDefectos.urls')),
     path('modulos/', views.modulos, name='modulos'),
     #path('programas/create/', programaP.ProgramaCreate.as_view(), name='proyectos'),
     path('log_in/', loginss.login_page, name='log_in'),
