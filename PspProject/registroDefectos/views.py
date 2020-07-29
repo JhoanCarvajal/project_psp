@@ -13,6 +13,7 @@ from .models import RegistroDefecto
 from mainApp.models import Fase, TiposDefecto
 #fomulario
 #from .forms import ProgramaForm
+from django.template.defaultfilters import slugify
 
 # Create your views here.
 @login_required(login_url='login')
@@ -30,4 +31,5 @@ def RegistroDefectoCreate(request):
         rd.id_fase_eliminacion = fase_eliminacion
         rd.tiempo_arreglo = request.POST['tiempo_arreglo']
         rd.save()
-    return HttpResponse("se guardo lo se por que no vto error pero hay que corregir eso")
+        slug = slugify(prg.nombre)
+    return redirect('/programas/detalles' + '/' + request.POST['id_programa'] + '/' + slug )
