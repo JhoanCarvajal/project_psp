@@ -12,46 +12,31 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Tipo error</th>
-                    <th scope="col">Fase</th>
-                    <th scope="col">Fase removida</th>
-                    <th scope="col">Tiempo de solucion</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col"></th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Actual</th>
+                    <th scope="col">To-Date</th>
+                    <th scope="col">To-Date %</th>
                 </tr>
             </thead>
             <tbody>
+                {% for d in defectos_ingresados %}
+                    <tr>
+                        <th scope="row">{{d.0}}</th>
+                        <td>
+                        {{d.1}}
+                        </td>
+                        <td>{{d.2}}</td>
+                        <td>{{d.3}}</td>
+                        <td>{{d.4}}%</td>
+                    </tr>
+                {% endfor %}
                 <tr>
-                    <th scope="row">10/10/2020</th>
-                    <td>404</td>
-                    <td>planeacion</td>
-                    <td>fese removida</td>
-                    <td>45</td>
-                    <td>la descriopcion</td>
-                </tr>
-                <tr>
-                    <th scope="row">10/10/2020</th>
-                    <td>404</td>
-                    <td>planeacion</td>
-                    <td>fese removida</td>
-                    <td>45</td>
-                    <td>la descriopcion</td>
-                </tr>
-                <tr>
-                    <th scope="row">10/10/2020</th>
-                    <td>404</td>
-                    <td>planeacion</td>
-                    <td>fese removida</td>
-                    <td>45</td>
-                    <td>la descriopcion</td>
-                </tr>
-                <tr>
-                    <th scope="row">10/10/2020</th>
-                    <td>404</td>
-                    <td>planeacion</td>
-                    <td>fese removida</td>
-                    <td>45</td>
-                    <td>la descriopcion</td>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

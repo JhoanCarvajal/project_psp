@@ -1,22 +1,26 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.urls import reverse, reverse_lazy
+#requerir login
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+#modelos
 from .models import Programa
 from django.contrib.auth.models import User
-from .forms import ProgramaForm
 from proyectos.models import Proyecto
 from mainApp.models import Lenguaje, Medida, Fase
 from registroDefectos.models import RegistroDefecto
 from registroTiempos.models import RegistroTiempo
-
+#fomulario
+from .forms import ProgramaForm
+#para grup by pero
 from django.db.models import Sum
+#ccb
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.urls import reverse, reverse_lazy
-from programas.models import Programa
-
-
-from .funciones import matrizResumenTiempos
+#funciones
+from .funciones.resumen_tiempos import matrizResumenTiempos
+from .funciones.defectos_en_fase import defectos_en_fase
 
 # Create your views here.
 @login_required(login_url='login')
@@ -25,26 +29,27 @@ def programa(request):
         'title':'Programa'
     })
 
-
+@login_required(login_url='login')
 def programas(request):
-    
     cont=Programa.objects.all()
     return render(request,'programaT/programas.html',{
         'title':'Programas',
         'contes':cont
     })
 
+@login_required(login_url='login')
 def defectos(request):
     return render(request,'programaT/defectos.html',{
         'title':'Defectos'
     })
 
+@login_required(login_url='login')
 def listaDefesctos(request):
     return render(request,'programaT/listaDefectos.html',{
         'title':'Lista de defectos'
     })
 
-    
+@method_decorator(login_required, name='dispatch')
 class ProgramaListView(ListView):
     model = Programa 
     def get_context_data(self, **kwargs):
@@ -54,20 +59,26 @@ class ProgramaListView(ListView):
         context["id_u"] = User.objects.get(id=self.kwargs.get('id_u'))
         return context
 
+@method_decorator(login_required, name='dispatch')
 class ProgramaDetailView(DetailView):
     model = Programa
 
     def get_context_data(self, **kwargs):
         context = super(ProgramaDetailView, self).get_context_data(**kwargs)
-        context["defectos"] = RegistroDefecto.objects.filter(id_programa=self.kwargs.get('pk'))
+        context["programa"] = Programa.objects.get(id=self.kwargs.get('pk'))
         tiempos_programa = RegistroTiempo.objects.filter(id_programa__id=self.kwargs.get('pk'))
-        fases = Fase.objects.all()
-
+        context["registro_tiempos_programa"] = tiempos_programa
+        fases = Fase.objects.all().order_by('id')
+        defectos_programa = RegistroDefecto.objects.filter(id_programa__id=self.kwargs.get('pk'))
         cantidad_fases = Fase.objects.count()
-
-        context["datos"] = matrizResumenTiempos(tiempos_programa, fases, cantidad_fases)
+        #para resumen de defectos inyectados
+        context["defectos_ingresados"] = defectos_en_fase(defectos_programa, fases, cantidad_fases)
+        
+        #para resumen de tiempos
+        context["datos"], context["total_actual"] = matrizResumenTiempos(tiempos_programa, fases, cantidad_fases)
         return context
 
+@method_decorator(login_required, name='dispatch')
 class ProgramaCreate(CreateView):
     model = Programa
     form_class = ProgramaForm
@@ -78,5 +89,3 @@ class ProgramaCreate(CreateView):
         context["id_p"] = Proyecto.objects.get(id=self.kwargs.get('id_p'))
         context["id_u"] = User.objects.get(id=self.kwargs.get('id_u'))
         return context
-
-    
