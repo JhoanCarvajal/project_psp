@@ -4,7 +4,7 @@
 
 {% block content %}
 
-
+{% if programa.id_usuario.id == request.user.id %}
 
 
     <h1>{{title}}</h1>
@@ -14,6 +14,7 @@
             <button class="float-right btn btn-success float-right" type="button" >Realizar reporte</button> 
         </div>
     </div>
+    
     <div class="container mb-5 mt-3"> 
         
         {% include 'programas/includes/info.html' %}  
@@ -21,12 +22,35 @@
         {% include 'programas/includes/registroTiempos.html' %}
 
         {% include 'programas/includes/defectosIngresados.html' %}
+
+        {% include 'programas/includes/defectosRemovidos.html' %}
         
         {% include 'programas/includes/tamañoPlantilla.html' %}
 
         {% include 'programas/includes/partesAñadidas.html' %}
 
         {% include 'programas/includes/parteReusada.html' %}
+
+    </div>
+
+
+{% else %}
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center vh-100">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-center">
+                        <i class="fas fa-exclamation fa-5x text-primary"  ></i>
+                    </div>
+                    
+                    <h1 class="text-primary">No eres propietario de esta preograma</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 
 {% endblock content %}

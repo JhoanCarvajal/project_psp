@@ -1,0 +1,31 @@
+<form action="{% url 'crear_registro_tiempo' %}" method="POST" id="form_tiempo">{% csrf_token %}
+    <div class="row">
+        <div class="col-sm-6 mb-3">
+            <label for="id_fase">Fase*:</label>
+            <select name="id_fase" class="custom-select">
+                <option value="" selected>---------</option>
+                {% for fase in lista_fases %}
+                    <option value="{{fase.id}}">{{fase.nombre}}</option>
+                {% endfor %}
+            </select>
+            <select hidden="" name="id_programa" class="custom-select">
+                <option value="{{programa.id}}" selected>{{programa.nombre}}</option>
+            </select>
+            <label for="id_fecha_inicio">Fecha de Inicio*:</label>
+            <input class="form-control mb-3" type="text" name="fecha_inicio" id="id_fecha_inicio" value="{% now "Y-m-d H:i" %}">
+            <label for="id_interrupciones">Interrupciones:</label>
+            <input class="form-control mb-3" type="number" name="interrupciones">
+            <label for="id_fecha_final">Fecha de finalización:</label>
+            <input class="form-control mb-3" type="date" name="fecha_final" id="id_fecha_final">
+        </div>  
+        <div class="col-sm-6 ">
+            <label for="id_tiempo_total">Timpo tota(Delta):</label>
+            <input class="form-control mb-3" type="number" name="tiempo_total">
+            <label for="id_comentarios">Comentarios:</label>
+            <textarea class="form-control mb-3" name="comentarios" cols="40" rows="7"></textarea> 
+        </div> 
+    </div> 
+    <div class="mx-auto mb-5" style="width: 200px;">
+        <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+    </div>
+</form>
