@@ -20,6 +20,7 @@ from loginRegister import views as loginss
 from perfilEdit import views as editPerfil
 from programas import views as programaP
 
+
 urlpatterns = [
     path('', loginss.login_page), 
     path('admin/', admin.site.urls),
@@ -43,5 +44,8 @@ urlpatterns = [
 
     # para poder incluir lo de reset pass
     path('accounts/', include('django.contrib.auth.urls')),
+
+    path('resportes/', include('reportes.urls')),
+
 
 ]
