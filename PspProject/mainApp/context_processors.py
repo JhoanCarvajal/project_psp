@@ -1,5 +1,6 @@
 from programas.models import Programa
-from .models import Lenguaje, Medida, Fase, TiposDefecto
+from .models import Lenguaje, Medida, Fase
+from tiposDefectos.models import TiposDefecto
 
 def get_programasDeUsuario(request):
     programas= Programa.objects.all()
