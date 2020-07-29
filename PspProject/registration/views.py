@@ -23,3 +23,7 @@ def register(request):
         return render(request, 'register/register.html',{
             'register_form' : register_form,
         })
+
+def log_out(request):
+    logout(request)
+    return redirect ('login')
