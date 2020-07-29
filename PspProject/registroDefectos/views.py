@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse, reverse_lazy
 #requerir login
-from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 #ccb
 from django.views.generic.detail import DetailView
@@ -13,6 +12,7 @@ from .models import RegistroDefecto
 from mainApp.models import Fase, TiposDefecto
 #fomulario
 #from .forms import ProgramaForm
+from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
 
 # Create your views here.
