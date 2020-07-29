@@ -5,23 +5,6 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
-def login_page(request):
-    if request.user.is_authenticated:
-        return redirect('proyectos')
-
-    else:
-        if request.method == 'POST':
-            userna = request.POST.get('usuario')
-            passwo = request.POST.get('contraseña')
-            user= authenticate(request, username = userna, password = passwo)
-            if user is not None:
-                login(request, user)
-                return redirect ('proyectos')
-            else:
-                messages.warning(request, 'No a sido posible ingresar')
-
-        return render(request, 'registration/login.html')
-
 
 def register(request):
     if request.user.is_authenticated:
@@ -34,13 +17,9 @@ def register(request):
             if register_form.is_valid():
                 register_form.save()
                 messages.success(request, 'Te has registrado correctamente')
-                return redirect('/log_in')
+                return redirect('login')
                 
 
         return render(request, 'register/register.html',{
             'register_form' : register_form,
         })
-
-def logout_usert(request):
-    logout(request)
-    return redirect ('/log_in')

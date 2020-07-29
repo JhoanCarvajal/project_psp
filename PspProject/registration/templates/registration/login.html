@@ -42,11 +42,13 @@
     			<div class="col p-2">
     				<form class="form-signin py-5" method='POST' action="">
 						{% csrf_token %}
-
+						{% if form.non_field_errors %}
+						<p style="color:red">Usuario o contraseña incorrectos, prueba de nuevo.</p>
+						{% endif %}
 						<label for="username" id="usuario"class="sr-only-focusable">Usuario</label>
-						<input type="text" name="usuario" id="usuario" class="form-control" required autofocus>
+						<input type="text" name="username" id="usuario" class="form-control" required autofocus>
 						<label for="password" class="sr-only-focusable">Contraseña</label>
-						<input type="password" id="constraseña" name="contraseña" class="form-control mb-5" required>
+						<input type="password" id="constraseña" name="password" class="form-control mb-5" required>
 						<button class="btn btn-lg btn-primary btn-block" type="submit" value="Acceder">Acceder</button>
 					</form>
 					<p>

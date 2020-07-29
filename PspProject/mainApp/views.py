@@ -6,6 +6,9 @@ from django.http import HttpResponse
 
 
 # Create your views here.
+def inicio(request):
+    return redirect('login')
+
 @login_required(login_url='login')
 def modulos(request):
     return render(request, 'mainApp/modulos.html',{
