@@ -25,6 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('programas/', include('programas.urls')),
     path('proyectos/', include('proyectos.urls')),
+    path('registroTiempos/', include('registroTiempos.urls')),
+    path('registroDefectos/', include('registroDefectos.urls')),
     path('modulos/', views.modulos, name='modulos'),
     #path('programas/create/', programaP.ProgramaCreate.as_view(), name='proyectos'),
     path('log_in/', loginss.login_page, name='log_in'),
@@ -33,6 +35,9 @@ urlpatterns = [
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     path('programa/',programaP.programa, name='programa'),
     path('programas/',programaP.programas, name='programas'),
+    path('defectos/',programaP.defectos, name='defectos'),
+    path('listaDefesctos/',programaP.listaDefesctos, name='listaDefectos'),
+    
     #url para mostrar programas
     path('programas/<int:id_proyecto>/', views.programasDeUsuarios, name='lista_programas_usuario'),
 

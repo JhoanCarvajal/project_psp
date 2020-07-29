@@ -5,11 +5,25 @@
 {% block content %}
     <h1>{{title}}</h1>
     
-    <div class="container mb-5"> 
-
+    <div class="row">
+        {% for j in contes %}
+        {% if j.id_usuario_id == request.user.id %}
+            <div class="col-sm-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{j.nombre}}</h5>
+                        <p class="card-text">{{j.id_lenguaje}}</p>
+                        <p class="card-text">{{j.fecha_creacion}}</p>
+                        <p class="card-text">{{j.id_proyecto}}</p>
+                        <a href="{% url 'detalles_programa' j.id j.nombre|slugify %}" class="btn btn-primary">Entrar al programa</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
     </div>
-
-    <h1>Otros</h1>
+        
+   
     
 
 {% endblock content %}

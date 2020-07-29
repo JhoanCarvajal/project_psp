@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'partesGenerales',
     'partesReusadas',
     'partesBases',
+    'graficos',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,7 @@ TEMPLATES = [
                 'mainApp.context_processors.get_lenguajes',
                 'mainApp.context_processors.get_medidas',
                 'mainApp.context_processors.get_fases',
+                'mainApp.context_processors.get_tiposdefectos',
             ],
         },
     },
@@ -126,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 

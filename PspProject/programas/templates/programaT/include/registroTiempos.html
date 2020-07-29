@@ -2,8 +2,14 @@
 <div class="card mb-5"> 
     <div class="card-header">
         <h3>Regitro de tiempo</h3>
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#staticBackdrop">
+            Registrar tiempo
+        </button>
+        <a class="btn btn-primary" data-toggle="collapse" href="#callaseRegistroTiempo" role="button" aria-expanded="false" aria-controls="callaseRegistroTiempo">
+            <i class="fas fa-angle-down"></i>
+        </a>
     </div>
-    <div class="card-body row"> 
+    <div class="card-body row collapse" id="callaseRegistroTiempo"> 
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -65,47 +71,103 @@
             </tbody>
         </table>
     </div>
-        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
-            Registrar tiempo
-        </button>
+    
+    
 </div>
 
 
 <!-- Modal edit information -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+<div class="modal fade"  id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" >
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editar</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Registro de tiempos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <label>Nombre de usuario</label>
-                <input class="form-control mb-3" type="text"  id="username" disabled></input>
-                <label>Correo</label>
-                <input class="form-control mb-3" type="text"  id="emailUser"></input>
-                <label>Nombre</label>
-                <input class="form-control mb-3" type="text"  id="nombreUser"></input>
-                <label>Apellido</label>
-                <input class="form-control mb-3" type="text"  id="apellidoUser"></input>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+            
+                
+           
+            <div class="modal-body" >
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <div class="input-group mb-3">
+                                <select class="custom-select">
+                                    <option selected>Fases</option>
+                                    <!--aqui se inclulle un for para que muestre todos las fases que hay 
+                                    registrados en la base de datos-->
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <input type="date" class="form-control mb-3"  ></input> 
+                            <input class="form-control mb-3" type="text"></input> 
+                        </div>  
+                        <div class="col-sm-6 ">
+                            <input type="date" class="form-control mb-3"></input> 
+                            <input class="form-control mb-3" type="text" disabled value="42"></input>
+                            <input class="form-control mb-3" type="text"></input> 
+                        </div> 
+                    </div> 
+                    <div class="mx-auto mb-5" style="width: 200px;">
+                        <button type="sutmid" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+                    </div>
+                </form>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fase</th>
+                            <th scope="col">Inicio</th>
+                            <th scope="col">Descanso</th>
+                            <th scope="col">Final</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Planeacion</th>
+                            <td>10/10/2020</td>
+                            <td>23</td>
+                            <td>10/10/2020</td>
+                            <td>45</td>
+                            <td>la descriopcion</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Planeacion</th>
+                            <td>10/10/2020</td>
+                            <td>23</td>
+                            <td>10/10/2020</td>
+                            <td>45</td>
+                            <td>la descriopcion</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Planeacion</th>
+                            <td>10/10/2020</td>
+                            <td>23</td>
+                            <td>10/10/2020</td>
+                            <td>45</td>
+                            <td>la descriopcion</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Planeacion</th>
+                            <td>10/10/2020</td>
+                            <td>23</td>
+                            <td>10/10/2020</td>
+                            <td>45</td>
+                            <td>la descriopcion</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<script type="text/javascript">
-    function modalForm(username,email,nombre,apellido){
-        $('#username').val(username),
-        $('#emailUser').val(email),
-        $('#nombreUser').val(nombre),
-        $('#apellidoUser').val(apellido)  
-    }
 </script>
+
