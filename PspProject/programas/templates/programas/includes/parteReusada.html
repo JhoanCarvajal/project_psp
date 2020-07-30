@@ -13,15 +13,18 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Plan</th>
-                    <th scope="col">Actual</th>
+                    <th scope="col">Actual</th> 
                 </tr>
             </thead>
             <tbody>
+                {% for parte in partes_reusada %}
                 <tr>
-                    <th scope="row">Nombre</th>
-                    <td>este es el plan</td>
-                    <td>resultados actuales</td>
+                    <th scope="row">{{parte.id_parte_general}}</th>
+                    <td>{{parte.plan}}</td>
+                    <td>{{parte.actual}}</td>
                 </tr>
+
+                {% endfor %}
             </tbody>
         </table>
     </div>

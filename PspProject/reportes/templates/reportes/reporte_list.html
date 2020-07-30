@@ -1,0 +1,40 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
+    <h1>{{title}}</h1>
+    
+    <div class="row">
+        
+        {% for j in object_list %}
+            {% comment %} {% if j.id_programa == request.user.id %} {% endcomment %}
+                <div class="col-sm-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{j.id_programa}}</h5>
+                        </div>
+                        <div class="card-body scroll-project-description">
+                            <label class="label">Nombre</label>
+                            <p class="card-text">{{j.nombre}}</p>
+                            <label class="label">Objetivo</label>
+                            <p class="card-text">{{j.objetivos}}</p>
+                            <label class="label">Condiciones</label>
+                            <p class="card-text">{{j.condiciones}}</p>
+                            <label class="label">Resultado esperado</label>
+                            <p class="card-text">{{j.resultados_esperados}}</p>
+                            <label class="label">Numero de test</label>
+                            <p class="card-text">{{j.numero_test}}</p>
+                            <label class="label">Resultado actual</label>
+                            <p class="card-text">{{j.resultados_actules}}</p>
+                            <label class="label">Descripcion</label>
+                            <p class="card-text">{{j.descripcion}}</p>
+                        </div>
+                    </div>
+                </div>  
+            {% comment %} {% endif %}    {% endcomment %}
+        {% endfor %}
+    </div>
+        
+   
+{% endblock content %}

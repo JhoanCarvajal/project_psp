@@ -1,5 +1,6 @@
 from programas.models import Programa
 from .models import Lenguaje, Medida, Fase
+from tiposDefectos.models import TiposDefecto
 
 def get_programasDeUsuario(request):
     programas= Programa.objects.all()
@@ -16,3 +17,8 @@ def get_medidas(request):
 def get_fases(request):
     fases = Fase.objects.all() 
     return {'lista_fases':fases}
+
+def get_tiposdefectos(request):
+    tipos_defectos = TiposDefecto.objects.all() 
+    return {'lista_tipos_defectos':tipos_defectos}
+

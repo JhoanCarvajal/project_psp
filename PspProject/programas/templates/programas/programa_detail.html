@@ -4,29 +4,76 @@
 
 {% block content %}
 
-
+{% if programa.id_usuario.id == request.user.id %}
 
 
     <h1>{{title}}</h1>
     <div class="row">
         <div class="col clearfix">
             <h3 class="float-left">{{programa.nombre}}</h3>
-            <button class="float-right btn btn-success float-right" type="button" >Realizar reporte</button> 
+            <button  onclick="reporte('{% url 'create_reportes' %}')" class="float-right btn btn-success float-right" type="button" >Realizar reporte</button > 
         </div>
     </div>
+    
     <div class="container mb-5 mt-3"> 
-        
-        {% include 'programas/includes/info.html' %}  
+        {% if psp >= 1 %}
+        {% include 'programas/includes/info.html' %} 
+        {% endif %}
         
         {% include 'programas/includes/registroTiempos.html' %}
 
         {% include 'programas/includes/defectosIngresados.html' %}
+
+        {% include 'programas/includes/defectosRemovidos.html' %}
         
-        {% include 'programas/includes/tamañoPlantilla.html' %}
+        {% if psp >= 1 %}
+        {% include 'programas/includes/partesBase.html' %}
 
         {% include 'programas/includes/partesAñadidas.html' %}
 
         {% include 'programas/includes/parteReusada.html' %}
+        {% endif %}
+
+    </div>
+
+
+{% else %}
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center vh-100">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-center">
+                        <i class="fas fa-exclamation fa-5x text-primary"  ></i>
+                    </div>
+                    
+                    <h1 class="text-primary">No eres propietario de esta programa</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+<div class="modal fade"  id="modalreporte" role="reporte"   data-backdrop="static" data-keyboard="false" tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true"> 
+    
+</div>
+
+
+{% block extra %}
+	
+    <script type="text/javascript">
+       
+        function reporte(url){
+            $('#modalreporte').load(url, function(){
+                $(this).modal('show');
+                
+            });
+        }
+    </script>
+
+{% endblock extra %}
 
 
 {% endblock content %}

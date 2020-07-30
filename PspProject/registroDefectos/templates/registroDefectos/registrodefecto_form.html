@@ -1,0 +1,38 @@
+<form action="{% url 'crear_registro_defecto' %}" method="POST">{% csrf_token %}
+    <div class="row">
+        <div class="col-sm-6 mb-3">
+            <select hidden="" name="id_programa">
+                <option value="{{programa.id}}" selected>{{programa.nombre}}</option>
+            </select>
+            <label for="id_tipo_defecto">Tipo defecto:</label>
+            <select required name="id_tipo_defecto" class="custom-select" id="id_tipo_defecto">
+                <option value="" selected>---------</option>
+                {% for defecto in lista_tipos_defectos %}
+                    <option value="{{defecto.id}}">{{defecto.nombre}}</option>
+                {% endfor %}
+            </select>
+            <input hidden="" type="text" name="fecha" value="{% now "Y-m-d H:i" %}">
+        </div>  
+        <div class="col-sm-6 ">
+            <label for="id_fase_creacion">Fase creación:</label>
+            <select required name="id_fase_creacion" class="custom-select" id="id_fase_creacion">
+                <option value="" selected>---------</option>
+                {% for fase in lista_fases %}
+                    <option value="{{fase.id}}">{{fase.nombre}}</option>
+                {% endfor %}
+            </select>
+            <label for="id_fase_eliminacion">Fase eliminación:</label>
+            <select required name="id_fase_eliminacion" class="custom-select" id="id_fase_eliminacion">
+                <option value="" selected>---------</option>
+                {% for fase in lista_fases %}
+                    <option value="{{fase.id}}">{{fase.nombre}}</option>
+                {% endfor %}
+            </select>
+            <label for="id_tiempo_total">Tiempo arreglo:</label>
+            <input required class="form-control mb-3" type="number" name="tiempo_arreglo" id="id_tiempo_total"> 
+        </div> 
+    </div> 
+    <div class="mx-auto mb-5" style="width: 200px;">
+        <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+    </div>
+</form>

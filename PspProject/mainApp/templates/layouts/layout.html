@@ -56,7 +56,7 @@
 						{% if request.user.is_staff %}
 							<small class="roboto-condensed-light">Administrador</small>
 						{% else %}
-							<small class="roboto-condensed-light">Desarrollador</small>
+							<small class="roboto-condensed-light">Estudiante</small>
 						{% endif %}
 					</figcaption>
 				</figure>
@@ -93,7 +93,7 @@
 									<a href="item-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar error</a>
 								</li>
 								<li>
-									<a href="item-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de errores</a>
+									<a href="{%url 'lista_tipos_defectos' %}"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de errores</a>
 								</li>
 							</ul>
 						</li>
@@ -127,7 +127,9 @@
 								</li>
 							</ul>
 						</li>
-
+						<li>
+							<a href="{% url 'lista_reportes' %}"><i class="fas fa-file-invoice"></i> &nbsp; Reportes</a>
+						</li>
 						<li>
 							<a href="company.html"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
 						</li>
@@ -154,7 +156,7 @@
 						<i class="fas fa-power-off"></i>
 					</a>
 				{% else %}
-					<a href="{% url 'log_in' %}">
+					<a href="{% url 'login' %}">
 						<i class="fas fa-sign-in-alt"></i>	
 					</a>
 				{% endif %}
@@ -173,7 +175,8 @@
 	=            Include JavaScript files           =
 	==============================================-->
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+	{% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> {% endcomment %}
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
@@ -181,6 +184,9 @@
 
 	<script src="{% static 'dashboar/js/main.js' %}" ></script>
 	<script src="{% static 'app.js' %}" ></script>
+
+	{% block extra %}
+	{% endblock extra %}
 
 </body>
 </html>

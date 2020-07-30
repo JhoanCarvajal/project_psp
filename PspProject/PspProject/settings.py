@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'loginRegister',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'partesReusadas',
     'partesBases',
     'graficos',
+    'tiposDefectos',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,7 @@ TEMPLATES = [
                 'mainApp.context_processors.get_lenguajes',
                 'mainApp.context_processors.get_medidas',
                 'mainApp.context_processors.get_fases',
+                'mainApp.context_processors.get_tiposdefectos',
             ],
         },
     },
@@ -127,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -140,6 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Auth redirect
+LOGIN_REDIRECT_URL = 'proyectos'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 # codigo para el envio de emails
 if DEBUG:
