@@ -44,8 +44,8 @@ urlpatterns = [
     path('programas/<int:id_proyecto>/', views.programasDeUsuarios, name='lista_programas_usuario'),
 
     #path para el login y todo lo relacionado
-    path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
     path('resportes/', include('reportes.urls')),
 

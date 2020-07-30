@@ -13,9 +13,5 @@ class PartesReusada(models.Model):
         ordering = ['plan']
 
     def __str__(self):
-<<<<<<< HEAD
-        d=str(self.plan)
-=======
         d = 'parte reusada de '+str(self.id_programa)
->>>>>>> psp3
         return d
