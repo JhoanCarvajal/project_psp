@@ -10,6 +10,7 @@ from proyectos.models import Proyecto
 from mainApp.models import Lenguaje, Medida, Fase
 from registroDefectos.models import RegistroDefecto
 from registroTiempos.models import RegistroTiempo
+from partesBases.models import PartesBase
 #fomulario
 from .forms import ProgramaForm
 #para grup by pero
@@ -66,19 +67,27 @@ class ProgramaDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProgramaDetailView, self).get_context_data(**kwargs)
-        context["programa"] = Programa.objects.get(id=self.kwargs.get('pk'))
+        programa = Programa.objects.get(id=self.kwargs.get('pk'))
+        psp = programa.id_proyecto.id_proceso.numero
+        context["psp"] = psp
+        context["programa"] = programa
+
+        fases = Fase.objects.all().order_by('id')
+        cantidad_fases = Fase.objects.count()
         tiempos_programa = RegistroTiempo.objects.filter(id_programa__id=self.kwargs.get('pk'))
         context["registro_tiempos_programa"] = tiempos_programa
-        fases = Fase.objects.all().order_by('id')
         defectos_programa = RegistroDefecto.objects.filter(id_programa__id=self.kwargs.get('pk'))
-        cantidad_fases = Fase.objects.count()
         #para resumen de defectos inyectados en fase
         context["defectos_ingresados"] = defectos_en_fase(defectos_programa, fases, cantidad_fases)
         #para resumen de defectos removidos en fase
         context["defectos_removidos"] = defectos_removidos_fase(defectos_programa, fases, cantidad_fases)
-        
         #para resumen de tiempos
         context["datos"], context["total_actual"] = matrizResumenTiempos(tiempos_programa, fases, cantidad_fases)
+
+        if psp >= 1:
+            #para resumen de partes base
+            context["partesBases"] = PartesBase.objects.filter(id_programa__id=self.kwargs.get('pk'))
+        
         return context
 
 @method_decorator(login_required, name='dispatch')

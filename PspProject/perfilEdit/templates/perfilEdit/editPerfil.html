@@ -9,21 +9,22 @@
             <div class="card-body row"> 
                 <div class="form-group col-sm-6">
                     <label for="nameUser">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="nameUser" value="{{usuario.username}}" disabled>
+                    <input type="text" class="form-control" id="nameUser" value="{{request.user.username}}" disabled>
                     <label for="userCorreo">Correo</label>
-                    <input type="email" class="form-control" id="userCorreo" value="{{usuario.email}}" disabled>
+                    <input type="email" class="form-control" id="userCorreo" value="{{request.user.email}}" disabled>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" value="{{usuario.first_name}}" disabled>
+                    <input type="text" class="form-control" id="name" value="{{request.user.first_name}}" disabled>
                     <label for="userApellido">Apellidos</label>
-                    <input type="text" class="form-control" id="userApellido" value="{{usuario.last_name}}" disabled>
+                    <input type="text" class="form-control" id="userApellido" value="{{request.user.last_name}}" disabled>
                 </div>
             </div>
             
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
+            <a href={% url 'actualizar_cuenta' request.user.id %} class="btn btn-primary">Editar</a>
+            {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
                 Editar
-            </button>
+            </button> {% endcomment %}
             
         </div>   
     </div>
@@ -35,18 +36,20 @@
                 <div class="form-group col-sm-6">
                     <label for="nameUser">Cambiar contraseña</label>
                     <input type="text" class="form-control mb-2" id="nameUser" value="**************" disabled>
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
+                    
+                    <a href={% url 'password_change' %} class="btn btn-primary">Cambiar contraseña</a>
+                    {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
                         Cambiar contraseña
-                    </button>
+                    </button> {% endcomment %}
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Borrar cuanta</label>
                     <input type="text" class="form-control mb-2" id="name" value="{{request.user.email}}" disabled>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDaleteU" onclick="modalDaletePerfil('{{request.user.username}}')">
+                    <a href={% url 'eliminar_mi_cuenta' request.user.id %} class="btn btn-primary">Eliminar cuenta</a>
+                    {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDaleteU" onclick="modalDaletePerfil('{{request.user.username}}')">
                         Eliminar cuanta
-                    </button>
+                    </button> {% endcomment %}
                 </div>
             </div>
         </div>   
@@ -66,7 +69,7 @@
                 <label>Nombre de usuario</label>
                 <input class="form-control mb-3" type="text"  id="username" disabled></input>
                 <label>Correo</label>
-                <input class="form-control mb-3" type="text"  id="emailUser"></input>
+                <input class="form-control mb-3" type="text"  id="emailUser" disabled></input>
                 <label>Nombre</label>
                 <input class="form-control mb-3" type="text"  id="nombreUser"></input>
                 <label>Apellido</label>

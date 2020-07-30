@@ -3,10 +3,6 @@
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
-
-
-
-
     <h1>{{title}}</h1>
     <div class="row">
         <div class="col clearfix">
@@ -15,8 +11,9 @@
         </div>
     </div>
     <div class="container mb-5 mt-3"> 
-        
-        {% include 'programas/includes/info.html' %}  
+        {% if psp >= 1 %}
+        {% include 'programas/includes/info.html' %} 
+        {% endif %}
         
         {% include 'programas/includes/registroTiempos.html' %}
 
@@ -24,11 +21,13 @@
 
         {% include 'programas/includes/defectosRemovidos.html' %}
         
-        {% include 'programas/includes/tamañoPlantilla.html' %}
+        {% if psp >= 1 %}
+        {% include 'programas/includes/partesBase.html' %}
 
         {% include 'programas/includes/partesAñadidas.html' %}
 
         {% include 'programas/includes/parteReusada.html' %}
+        {% endif %}
 
 
 {% endblock content %}

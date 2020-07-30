@@ -28,6 +28,9 @@ urlpatterns = [
     path('registroTiempos/', include('registroTiempos.urls')),
     path('registroDefectos/', include('registroDefectos.urls')),
     path('tiposDefectos/', include('tiposDefectos.urls')),
+    path('partesBases/', include('partesBases.urls')),
+    path('perfilEdit/', include('perfilEdit.urls')),
+    path('partesAñadidas/', include('partesAñadidas.urls')),
     
     path('modulos/', views.modulos, name='modulos'),
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
