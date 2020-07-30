@@ -1,44 +1,19 @@
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> ramacopete
 {% extends 'layouts/layout.html' %}
 
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
 
-<<<<<<< HEAD
-    <h1>Errores</h1>
-    
-    {% for j in object_list %}
-        <div class="card mb-3 ">
-        <div class="card-header">
-            nombre
-        </div>
-        <div class="card-body">
-            
-            <p class="card-text">asdflkjalñsdjfñlkaskdjflñkasdjfñlkjsdfa.</p>
-            
-        </div>
-        </div>
-    {% empty %}
-        <p>No hay Errores</p>
-    {% endfor %}
-   
-=======
 
 
 <h1>Errores</h1>
 {% for article in object_list %}
-<div class="card mb-3" >
-    <h5 class="card-header">Titilo error</h5>
-    <div class="card-body">
-      <p class="card-text"> DEscripcion breve.</p>
+    <div class="card mb-3" >
+        <h5 class="card-header">{{article.nombre}}</h5>
+        <div class="card-body">
+            <p class="card-text"> {{article.descripcion}}</p>
+        </div>
     </div>
-  </div>
 
     
 {% empty %}
@@ -46,6 +21,5 @@
 {% endfor %}
 
 
->>>>>>> ramacopete
 
 {% endblock content %}
