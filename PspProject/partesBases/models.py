@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class PartesBase(models.Model):
-    id_programa = models.ForeignKey("programas.Programa", verbose_name="Proyecto", on_delete=models.CASCADE)
+    id_programa = models.ForeignKey("programas.Programa", verbose_name="Programa", on_delete=models.CASCADE)
     id_parte_general = models.ForeignKey("partesGenerales.PartesGeneral", verbose_name="Parte General", on_delete=models.CASCADE)
     baseplan = models.IntegerField(verbose_name="Planeado base")
     planDel = models.IntegerField(verbose_name="Planeado a eliminar")
@@ -19,4 +19,5 @@ class PartesBase(models.Model):
         ordering = ['baseplan']
 
     def __str__(self):
-        return self.baseplan
+        d = 'parte base' + str(self.id_programa.nombre)
+        return d

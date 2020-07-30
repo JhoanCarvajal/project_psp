@@ -16,23 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mainApp import views
-from loginRegister import views as loginss
 from perfilEdit import views as editPerfil
 from programas import views as programaP
 
 urlpatterns = [
-    path('', loginss.login_page), 
+    path('', include('mainApp.urls')), 
     path('admin/', admin.site.urls),
+    #apps
     path('programas/', include('programas.urls')),
     path('proyectos/', include('proyectos.urls')),
     path('registroTiempos/', include('registroTiempos.urls')),
     path('registroDefectos/', include('registroDefectos.urls')),
     path('tiposDefectos/', include('tiposDefectos.urls')),
+    path('partesBases/', include('partesBases.urls')),
+    path('perfilEdit/', include('perfilEdit.urls')),
+    path('partesAñadidas/', include('partesAñadidas.urls')),
+    
     path('modulos/', views.modulos, name='modulos'),
-    #path('programas/create/', programaP.ProgramaCreate.as_view(), name='proyectos'),
-    path('log_in/', loginss.login_page, name='log_in'),
-    path('register/', loginss.register, name='register'),
-    path('logout_page/', loginss.logout_usert, name='logout_page'),
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     path('programa/',programaP.programa, name='programa'),
     path('programas/',programaP.programas, name='programas'),
@@ -42,7 +42,7 @@ urlpatterns = [
     #url para mostrar programas
     path('programas/<int:id_proyecto>/', views.programasDeUsuarios, name='lista_programas_usuario'),
 
-    # para poder incluir lo de reset pass
+    #path para el login y todo lo relacionado
     path('accounts/', include('django.contrib.auth.urls')),
-
+    path('accounts/', include('registration.urls')),
 ]
