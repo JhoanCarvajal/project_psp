@@ -32,6 +32,7 @@ class Medida(models.Model):
 
 class Proceso(models.Model):
     acronimo = models.CharField(verbose_name="Acronimo", max_length=20)
+    numero = models.FloatField(verbose_name="Numero psp")
     nombre = models.CharField(verbose_name="Nombre", max_length=200)
 
     class Meta:
@@ -40,7 +41,7 @@ class Proceso(models.Model):
         ordering = ['nombre']
 
     def __str__(self):
-        return self.nombre
+        return self.acronimo
 
         
 class Fase(models.Model):

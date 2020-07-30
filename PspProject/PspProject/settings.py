@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'loginRegister',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,6 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Auth redirect
+LOGIN_REDIRECT_URL = 'proyectos'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 # codigo para el envio de emails
 if DEBUG:

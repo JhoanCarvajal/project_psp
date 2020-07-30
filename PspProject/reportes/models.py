@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Reporte(models.Model):
-    id_programa = models.ForeignKey("programas.Programa", verbose_name="proyecto", on_delete=models.CASCADE)
+    id_programa = models.ForeignKey("programas.Programa", verbose_name="Programa", on_delete=models.CASCADE)
     nombre = models.CharField(verbose_name="Nombre", max_length=50)
     objetivos = models.TextField(verbose_name="Objetivos")
     condiciones = models.TextField(verbose_name="Condiciones")
