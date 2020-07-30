@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col clearfix">
             <h3 class="float-left">{{programa.nombre}}</h3>
-            <button class="float-right btn btn-success float-right" type="button" >Realizar reporte</button> 
+            <button  onclick="reporte('{% url 'create_reportes' %}')" class="float-right btn btn-success float-right" type="button" >Realizar reporte</button > 
         </div>
     </div>
     
@@ -45,12 +45,32 @@
                         <i class="fas fa-exclamation fa-5x text-primary"  ></i>
                     </div>
                     
-                    <h1 class="text-primary">No eres propietario de esta preograma</h1>
+                    <h1 class="text-primary">No eres propietario de esta programa</h1>
                 </div>
             </div>
         </div>
     </div>
 {% endif %}
+
+
+<div class="modal fade"  id="modalreporte" role="reporte"   data-backdrop="static" data-keyboard="false" tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true"> 
+    
+</div>
+
+
+{% block extra %}
+	
+    <script type="text/javascript">
+        var $ = jQuery.noConflict();
+        function reporte(url){
+            $('#modalreporte').load(url, function(){
+                $(this).modal('show');
+                
+            });
+        }
+    </script>
+
+{% endblock extra %}
 
 
 {% endblock content %}

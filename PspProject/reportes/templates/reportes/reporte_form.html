@@ -1,0 +1,50 @@
+
+    <div class="modal-dialog" role="documento">
+        <div class="modal-content" >
+            <div class="modal-header">
+               <h1>Hacer reporte</h1>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body " >
+                
+                    <input name="id_programa" hidden required id="id_id_programa">
+                        
+
+                    <div class="row scroll-project-description">
+                        <label for="id_programa">Id:</label> 
+                        <input class="form-control" hidden type="text" name="nombre" maxlength="50" required id="id_programa">
+                        
+                        <label for="id_nombre">Nombre:</label>
+                        <input class="form-control" type="text" name="nombre" maxlength="50" required id="id_nombre">
+                        <label for="id_numero_test">Numero de test:</label> 
+                        <input class="form-control" type="number" name="numero_test" required id="id_numero_test">
+                        <label for="id_objetivos">Objetivos:</label>
+                        <textarea class="form-control" name="objetivos" cols="40" rows="10" required id="id_objetivos">
+                        </textarea>
+                        <label for="id_condiciones">Condiciones:</label> 
+                        <textarea class="form-control" name="condiciones" cols="40" rows="10" required id="id_condiciones">
+                        </textarea>
+                        <label for="id_resultados_esperados">Resultados Esperados:</label> 
+                        <textarea class="form-control" name="resultados_esperados" cols="40" rows="10" required id="id_resultados_esperados">
+                        </textarea>
+                        
+                        <label for="id_resultados_actules">Resultados Actuales:</label> 
+                        <textarea class="form-control" name="resultados_actules" cols="40" rows="10" required id="id_resultados_actules">
+                        </textarea>
+                        <label for="id_descripcion">Descripción:</label> 
+                        <textarea class="form-control" name="descripcion" cols="40" rows="10" required id="id_descripcion">
+                        </textarea>
+                    </div>
+                
+                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="sutmid" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

@@ -10,7 +10,7 @@
         {% for j in object_list %}
             {% comment %} {% if j.id_programa == request.user.id %} {% endcomment %}
                 <div class="col-sm-6 mb-3">
-                    <div class="card" style="min-height:30em;">
+                    <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">{{j.id_programa}}</h5>
                         </div>
@@ -26,7 +26,7 @@
                             <label class="label">Numero de test</label>
                             <p class="card-text">{{j.numero_test}}</p>
                             <label class="label">Resultado actual</label>
-                            <p class="card-text">{{j.restados_actuales}}</p>
+                            <p class="card-text">{{j.resultados_actules}}</p>
                             <label class="label">Descripcion</label>
                             <p class="card-text">{{j.descripcion}}</p>
                         </div>
