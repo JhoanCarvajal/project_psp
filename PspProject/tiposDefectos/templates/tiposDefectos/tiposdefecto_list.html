@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> ramacopete
 {% extends 'layouts/layout.html' %}
 
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
 
+<<<<<<< HEAD
     <h1>Errores</h1>
     
     {% for j in object_list %}
@@ -24,5 +28,24 @@
         <p>No hay Errores</p>
     {% endfor %}
    
+=======
+
+
+<h1>Errores</h1>
+{% for article in object_list %}
+<div class="card mb-3" >
+    <h5 class="card-header">Titilo error</h5>
+    <div class="card-body">
+      <p class="card-text"> DEscripcion breve.</p>
+    </div>
+  </div>
+
+    
+{% empty %}
+<h1>no se encontro una lista de errores </h1>
+{% endfor %}
+
+
+>>>>>>> ramacopete
 
 {% endblock content %}

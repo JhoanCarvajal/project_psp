@@ -4,7 +4,9 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 #modelos
-from .models import Programa
+from .models import Programa 
+from partesAñadidas.models import PartesAñadida
+from partesReusadas.models import PartesReusada
 from django.contrib.auth.models import User
 from proyectos.models import Proyecto
 from mainApp.models import Lenguaje, Medida, Fase
@@ -76,10 +78,13 @@ class ProgramaDetailView(DetailView):
         context["defectos_ingresados"] = defectos_en_fase(defectos_programa, fases, cantidad_fases)
         #para resumen de defectos removidos en fase
         context["defectos_removidos"] = defectos_removidos_fase(defectos_programa, fases, cantidad_fases)
-        
+        #para partes reusadas
+        context["partes_reusada"]= PartesReusada.objects.filter(id_programa=self.kwargs.get('pk'))
+        #partes añadidas
+        context["partes_añadida"]= PartesAñadida.objects.filter(id_programa=self.kwargs.get('pk'))
         #para resumen de tiempos
         context["datos"], context["total_actual"] = matrizResumenTiempos(tiempos_programa, fases, cantidad_fases)
-        return context
+        return context 
 
 @method_decorator(login_required, name='dispatch')
 class ProgramaCreate(CreateView):

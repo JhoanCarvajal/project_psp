@@ -12,52 +12,29 @@
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Actual</th>
+                    <th scope="col">Tipo parte</th>
+                    <th scope="col">Items planeados</th>
+                    <th scope="col">Tamaño de items</th>
+                    <th scope="col">Tamaño planeado</th>
+                    <th scope="col">Items actuales </th>
+                    <th scope="col">Tamaño Actual </th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>nada</td>
-                    <td>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Base</th>
-                                    <th scope="col">Deli</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Items</th>
-                                    <td>tamaño</td>
-                                    
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Base</th>
-                                    <th scope="col">Deli</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>10/10/2020</th>
-                                    <td>items</td>
-                                    <td>Tamaño</td>
-                                    
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-        
-                </tr>
-                
+                {% for parteañ in partes_añadida %}
+                    <tr>
+                        <th scope="row">{{parteañ.nombre}}</th>
+                        <td>{{parteañ.id_tipo_parte}}</td>
+                        <td>{{parteañ.items_planeados}}</td>
+                        <td>{{parteañ.id_tamaño_items}}</td>
+                        <td>{{parteañ.tamaño_planeado}}</td>
+                        <td>{{parteañ.items_acuales}}</td>
+                        <td>{{parteañ.tamaño_actual}}</td>
+
+                    </tr>
+                {% endfor %}
+               
             </tbody>
         </table>
     </div>
