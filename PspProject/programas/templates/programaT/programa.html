@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
+    <h1>{{title}}</h1>
+
+    <div class="row">
+        <div class="col clearfix">
+            <h3 class="float-left">Nombre del programa</h3>
+            <a href="{% url '' %}" class="float-right btn btn-success float-right" type="button" >Realizar reporte</a>
+        </div>
+    </div>
+
+    <div class="container mb-5 mt-3"> 
+           
+        {% include 'programaT/include/info.html' %}
+        
+        {% include 'programaT/include/registroTiempos.html' %}
+
+        {% include 'programaT/include/defectosIngresados.html' %}
+        
+        {% include 'programaT/include/tamañoPlantilla.html' %}
+
+        {% include 'programaT/include/partesAñadidas.html' %}
+
+        {% include 'programaT/include/parteReusada.html' %}
+
+    </div>
+
+    
+    
+   
+    
+{% endblock content %}

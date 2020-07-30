@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Registrarte</title>
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+	
+</head>
+<body class="bg-color">
+<div class="container pb-5">
+	<div class="row justify-content-center pt-1">
+		<div class="col col-sm-12 col-lg-4 bg-light redondeo-izq redondeo-der mt-5">
+			<nav class="navbar navbar-dark redondeo-izq bg-light">
+				<a class="navbar-brand" href="/login">
+					<img src="{% static 'img/logo_psp.png' %}" width="75" height="30" class="d-inline-block align-top ml-3" alt="" loading="lazy">
+				</a>
+				<ul class="nav justify-content-end">
+					<li class="nav-item">
+						<a class="nav-link active " href="{% url 'login' %}">Iniciar Sesion</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled " href="">Registrarse</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="row mx-4">
+    			<div class="col p-2">
+					{{register_form.errors}}
+					<form method="POST" action=""> 
+						{% csrf_token %}
+
+						{% for field in register_form %}
+							
+							<label class="sr-only-focusable">{{field.label}}</label>
+							<input class="form-control mb-3" {{field}}
+						{% endfor %}
+
+						<input class="btn btn-lg btn-primary btn-block" type="submit" value="Registarse"/>
+					</form>
+    			</div>
+			</div>
+			<div class="row align-items-end">
+				<div class="col">
+					<p class="mb-3 ml-4 text-muted">&copy; 2020 - {% now "Y" %}
+					</p>
+				</div>
+			</div>
+		</div>
+		{% comment %} <div class="col col-sm-12 d-none d-lg-block col-lg-5 redondeo-der p-0 img-fondo mt-5">
+			<!--<img src="img/fondoLogin.png" class="img-fluid redondeo-der" alt="Responsive image">-->
+			<div class="centrado text-light">
+				<h1>Bienvenido a<img src="{% static 'img/logo_psp.png' %}" width="140" height="40" class="d-inline-block align-top" alt="" loading="lazy"></h1>
+				<h5>Únete a nosotros</h4>
+			</div>
+		</div> {% endcomment %}
+	</div>
+</div>
+</div>
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<div class="card mb-5"> 
+    <div class="card-header">
+        <h3>Defectos Removidos</h3>
+        
+        <a class="btn btn-primary" data-toggle="collapse" href="#defetosR" role="button" aria-expanded="false" aria-controls="defetosR">
+            <i class="fas fa-angle-down"></i>
+        </a>
+    </div>
+    <div class="card-body row collapse" id="defetosR"> 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Actual</th>
+                    <th scope="col">To-Date</th>
+                    <th scope="col">To-Date %</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in defectos_removidos %}
+                    <tr>
+                        <th scope="row">{{d.0}}</th>
+                        <td>
+                        {{d.1}}
+                        </td>
+                        <td>{{d.2}}</td>
+                        <td>{{d.3}}</td>
+                        <td>{{d.4}}%</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal edit information -->

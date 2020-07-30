@@ -1,0 +1,34 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} Lista de Programas {% endblock title %} 
+
+{% block content %}
+    <h1>Lista de Programas</h1>
+    <!--este card representa un proyecto-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Proyecto: {{id_p}}</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- cada "col-sm-6 mb-3" de estos representa un programa 
+                    una idea para hacer esto es poniendo un for para los proyectos y dentro de ese for 
+                    tener otro for para los programas -->
+                {% for programa in programas %}
+                    {% if programa.id_usuario.id == request.user.id %}
+                        <div class="col-sm-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{programa.nombre}}</h5>
+                                    <p class="card-text">{{programa.id_lenguaje}}</p>
+                                    <p class="card-text">{{programa.id_medida}}</p>
+                                    <a href="{% url 'detalles_programa' programa.id programa.nombre|slugify %}" class="btn btn-primary">Entrar al programa</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
