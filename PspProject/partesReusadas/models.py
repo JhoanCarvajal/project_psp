@@ -13,4 +13,5 @@ class PartesReusada(models.Model):
         ordering = ['plan']
 
     def __str__(self):
-        return self.plan
+        d=str(self.plan)
+        return d
