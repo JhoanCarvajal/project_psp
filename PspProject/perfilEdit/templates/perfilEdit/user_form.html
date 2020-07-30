@@ -1,4 +1,7 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
+<form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="oBL7xxIdsugCcWuOvY9LZ47SWhuFseRlLSlYlXCjccddoa1tIGPMIGg127mlrsD2">
+    <p><label for="id_username">Nombre de usuario:</label> <input type="text" name="username" value="michael" maxlength="150" required id="id_username"> <span class="helptext">Requerido. 150 carácteres como máximo. Únicamente letras, dígitos y @/./+/-/_ </span></p>
+    <p><label for="id_email">Dirección de correo electrónico:</label> <input type="email" name="email" value="michass1425@gmail.com" maxlength="254" id="id_email"></p>
+    <p><label for="id_first_name">Nombre:</label> <input type="text" name="first_name" value="Michael Stiven" maxlength="30" id="id_first_name"></p>
+    <p><label for="id_last_name">Apellidos:</label> <input type="text" name="last_name" value="Narvaez Batero" maxlength="150" id="id_last_name"></p>
+        <input type="submit" value="Update">
 </form>

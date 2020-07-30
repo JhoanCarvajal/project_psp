@@ -19,7 +19,7 @@ class UserDeleteView(DeleteView):
 
 class UserUpdate(UpdateView):
     model = User
-    fields = ['first_name','last_name']
+    fields = ['username','email','first_name','last_name']
     template_name = "perfilEdit/user_form.html"
 
     def get_success_url(self):
