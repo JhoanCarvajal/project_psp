@@ -2,36 +2,32 @@
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
-<form action="{% url 'crear_registro_tiempo' %}" method="POST" id="form_tiempo">{% csrf_token %}
-    <div class="row">
-        <div class="col-sm-6 mb-3">
-            <label for="id_fase">Fase*:</label>
-            <select name="id_fase" class="custom-select" required>
-                <option value="" selected>---------</option>
-                {% for fase in lista_fases %}
-                    <option value="{{fase.id}}">{{fase.nombre}}</option>
-                {% endfor %}
-            </select>
-            <select hidden="" name="id_programa" class="custom-select">
-                <option value="{{pr.id}}" selected>{{pr.nombre}}</option>
-            </select>
-            <label for="id_fecha_inicio">Fecha de Inicio*:</label>
-            <input class="form-control mb-3" type="text" name="fecha_inicio" id="id_fecha_inicio" value="{% now "DATETIME_FORMAT" %}" disabled>
-            
-            <label for="id_interrupciones">Interrupciones:</label>
-            <input class="form-control mb-3" type="number" name="interrupciones" value="0" id="id_interrupciones" disabled>
-            <label for="id_fecha_final">Fecha de finalización:</label>
-            <input class="form-control mb-3" type="text" name="fecha_final" id="id_fecha_final" disabled>
-        </div>  
-        <div class="col-sm-6 ">
-            <label for="id_tiempo_total">Timpo tota(Delta):</label>
-            <input class="form-control mb-3" type="number" name="tiempo_total" value="0" id="id_tiempo_total" disabled>
-            <label for="id_comentarios">Comentarios:</label>
-            <textarea class="form-control mb-3" name="comentarios" cols="40" rows="7"></textarea> 
-        </div>
-        <div id="mensaje">
-        </div>
-    </div> 
+<form action="" method="POST">{% csrf_token %}
+<div class="input-group mb-3">
+    <p><label for="id_id_fase">Fase:</label> 
+    <select name="id_fase" class="custom-select" required id="id_id_fase">
+    <option value="" selected>---------</option>
+    {% for fase in lista_fases %}
+        <option value="{{fase.id}}">{{fase.nombre}}</option>
+    {% endfor %}
+
+</select></p>
+<input name="id_programa" hidden="" type="text" value="{{programa.id}}" class="custom-select" required id="id_id_programa">
+
+        <p><label for="id_fecha_inicio">Fecha de inicio:</label> 
+        <input class="form-control" type="text" name="fecha_inicio" required id="id_fecha_inicio"></p>
+        <p><label for="id_interrupciones">Interrupciones:</label> 
+        <input class="form-control" type="number" name="interrupciones" id="id_interrupciones"></p>
+        <p><label for="id_fecha_final">Fecha de finalización:</label> 
+        <input class="form-control" type="text" name="fecha_final" id="id_fecha_final"></p>
+        <p><label for="id_tiempo_total">Timpo tota(Delta):</label> 
+        <input class="form-control" type="number" name="tiempo_total" id="id_tiempo_total"></p>
+
+</div>
+        <p><label for="id_comentarios">Comentarios:</label> 
+        <textarea class="form-control mb-3" name="comentarios" cols="40" rows="2" id="id_comentarios">
+        </textarea></p>
+
     <div class="mx-auto mb-5" style="width: 200px;">
         <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
     </div>
@@ -66,7 +62,7 @@ var fechaFinDia;
 
 function empezar(){
     var hoy = new Date()
-    var fechaI = hoy.toISOString()
+    var fechaI = hoy.toLocaleString()
     fechaInicioSegundo = hoy.getSeconds()
     fechaInicioMinutos = (hoy.getMinutes() * 60)
     fechaInicioHora = (hoy.getHours() * 3600)
@@ -108,7 +104,7 @@ function terminar(){
     fechaFinHora = (hoy.getHours() * 3600)
     fechaFinDia = (hoy.getDate() * 86400)
     fechaFin = fechaFinSegundo + fechaFinMinutos + fechaFinHora + fechaFinDia
-    var fechaF = hoy.toISOString()
+    var fechaF = hoy.toLocaleString()
     document.getElementById("id_fecha_final").value = fechaF
     document.getElementById("btn_empezar").style.display = "none"
     document.getElementById("btn_pausar").style.display = "none"
