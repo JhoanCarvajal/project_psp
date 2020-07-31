@@ -101,7 +101,8 @@ class ProgramaDetailView(DetailView):
 class ProgramaCreate(CreateView):
     model = Programa
     form_class = ProgramaForm
-    success_url = reverse_lazy('proyectos', )
+    def get_success_url(self):
+        return reverse_lazy('lista_programas_usuario', args=[self.object.id_usuario.id, self.object.id_proyecto.id])
     
     def get_context_data(self, **kwargs):
         context = super(ProgramaCreate, self).get_context_data(**kwargs)
