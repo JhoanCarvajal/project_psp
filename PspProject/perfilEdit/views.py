@@ -3,13 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, UpdateView
-
-
 from django.utils.decorators import method_decorator
 
 # Create your views here.
-@method_decorator(login_required, name='dispatch')
-# Create your views here.
+
 @login_required(login_url='login')
 def editPerfilUser(request):
     return render(request, 'perfilEdit/editPerfil.html',{

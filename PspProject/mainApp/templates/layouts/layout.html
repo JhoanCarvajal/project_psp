@@ -1,7 +1,7 @@
 {% load static %}
-{% comment %} {% if request.user.is_superuser%}
+ {% if request.user.is_superuser%}
 	<script>window.location.href = '/admin'; </script>
-{% endif %} {% endcomment %}
+{% endif %} 
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,7 +77,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-bug"></i></i> &nbsp;Errores<i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="item-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar error</a>
+									<a href="{% url 'crear_tipos_defectos' %}"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar error</a>
 								</li>
 								<li>
 									<a href="{%url 'lista_tipos_defectos' %}"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de errores</a>
@@ -155,6 +155,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 	<script src="{% static 'dashboar/js/jquery.mCustomScrollbar.concat.min.js' %}" ></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<script src="{% static 'dashboar/js/main.js' %}" ></script>
 	<script src="{% static 'app.js' %}" ></script>
