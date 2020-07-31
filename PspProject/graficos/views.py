@@ -57,3 +57,4 @@ class GraficosDetailView(DetailView):
             context["partesBases"] = PartesBase.objects.filter(id_programa__id=self.kwargs.get('pk'))
         
         return context
+        

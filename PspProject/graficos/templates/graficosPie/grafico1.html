@@ -3,10 +3,62 @@
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
 
-    <div id="chart_div"></div>
-    <h1>hola</h1>
+      function drawStuff() {
+        var dato1 = document.getElementById("nombre1").value
+        dato1=parseInt(dato1)
+        var data = new google.visualization.arrayToDataTable([
+          ['Opening Move', 'Percentage'],
+          ["King's pawn (e4)", dato1 ],
+          ["Queen's pawn (d4)", 31],
+          ["Knight to King 3 (Nf3)", 12],
+          ["Queen's bishop pawn (c4)", 10],
+          ['Other', 3]
+        ]);
 
+        var options = {
+          title: 'Chess opening moves',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Chess opening moves',
+                   subtitle: 'popularity by percentage' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Percentage'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "60%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="top_x_div" style="width: 800px; height: 400px;"></div>
+    
+
+
+    {% for j in datos %}
+        <p id="nombre1">{{j.0}}</p>
+        <p id="porcentaje1">{{j.4}}%</p>
+    {% endfor %} 
+
+    {% for j in registro_tiempos_programa %}
+        <p >{{j.0}}</p>
+        <p >{{j.1}}</p>
+    {% endfor %}
+
+  </body>
+</html>
     
 
 {% endblock content %}
