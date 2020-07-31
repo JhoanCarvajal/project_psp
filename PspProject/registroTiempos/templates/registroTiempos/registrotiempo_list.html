@@ -17,6 +17,8 @@
     </thead>
     <tbody>
         {% for tiempo in object_list %}
+        {% if tiempo.id_programa == pk %}
+        <tr>
             <th scope="row">{{tiempo.id_fase}}</th>
             <td>{{tiempo.id_programa}}</td>
             <td>{{tiempo.fecha_inicio}}</td>
@@ -25,6 +27,7 @@
             <td>{{tiempo.tiempo_total}}</td>
             <td>{{tiempo.comentarios}}</td>
         </tr>
+        {% endif %}
         {% endfor %}
     </tbody>
 </table>

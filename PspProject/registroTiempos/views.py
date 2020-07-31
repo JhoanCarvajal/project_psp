@@ -23,19 +23,20 @@ class TiemposListView(ListView):
         context["pk"] = Programa.objects.get(id=self.kwargs.get('pk'))
         return context
     
+class RegistroTiempoCreate(CreateView):
+    model = RegistroTiempo
+    fields = ['id_fase','id_programa', 'fecha_inicio','interrupciones','fecha_final', 'tiempo_total', 'comentarios']
 
-
-class CrearRegistroTiempoView(TemplateView):
-    template_name = "registroTiempos/registrotiempo_form.html"
-
+    def get_success_url(self):
+        return reverse_lazy('lista_tiempos', args=[self.object.id_programa.id])
+    
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["pr"] = Programa.objects.get(id=self.kwargs.get('pk'))
+        context = super(RegistroTiempoCreate, self).get_context_data(**kwargs)
+        context["programa"] = Programa.objects.get(id=self.kwargs.get('pk'))
         return context
 
-
 @login_required(login_url='login')
-def RegistroTiempoCreate(request):
+def RegistroTiempoCreatef(request):
     if request.method=='POST':
         prg = Programa.objects.get(pk=request.POST['id_programa'])
         fase = Fase.objects.get(pk=request.POST['id_fase'])
@@ -52,4 +53,3 @@ def RegistroTiempoCreate(request):
         if request.POST['comentarios'] != "":
             rt.comentarios = request.POST['comentarios']
         rt.save()
-    return HttpResponse("hola")
