@@ -2,9 +2,7 @@
 <div class="card mb-5"> 
     <div class="card-header">
         <h3>Regitro de tiempo</h3>
-        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#staticBackdrop">
-            Registrar tiempo
-        </button>
+        <a class="btn btn-primary" href="{% url 'form_crear_registro_tiempo' programa.id %}">Crear Registro<a/>
         <a class="btn btn-primary" data-toggle="collapse" href="#callaseRegistroTiempo" role="button" aria-expanded="false" aria-controls="callaseRegistroTiempo">
             <i class="fas fa-angle-down"></i>
         </a>
@@ -41,50 +39,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-</div>
-
-<!-- Modal edit information -->
-<div class="modal fade"  id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content" >
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Registro de tiempos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-           
-            <div class="modal-body" >
-            {% include 'registroTiempos/registrotiempo_form.html' %}
-
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Fase</th>
-                            <th scope="col">Programa</th>
-                            <th scope="col">Inicio</th>
-                            <th scope="col">Descanso</th>
-                            <th scope="col">Final</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Descripcion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for tiempo in registro_tiempos_programa %}
-                            <th scope="row">{{tiempo.id_fase}}</th>
-                            <td>{{tiempo.id_programa}}</td>
-                            <td>{{tiempo.fecha_inicio}}</td>
-                            <td>{{tiempo.interrupciones}}</td>
-                            <td>{{tiempo.fecha_finalizacion|date}}</td>
-                            <td>{{tiempo.tiempo_total}}</td>
-                            <td>{{tiempo.comentarios}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 </div>

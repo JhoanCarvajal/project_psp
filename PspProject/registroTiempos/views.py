@@ -7,14 +7,33 @@ from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.base import TemplateView
 #modelos
 from programas.models import Programa
 from .models import RegistroTiempo
 from mainApp.models import Fase
-#fomulario
-#from .forms import ProgramaForm
 
 # Create your views here.
+class TiemposListView(ListView):
+    model = RegistroTiempo
+    template_name = "registrotiempos_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["pk"] = Programa.objects.get(id=self.kwargs.get('pk'))
+        return context
+    
+
+
+class CrearRegistroTiempoView(TemplateView):
+    template_name = "registroTiempos/registrotiempo_form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["pr"] = Programa.objects.get(id=self.kwargs.get('pk'))
+        return context
+
+
 @login_required(login_url='login')
 def RegistroTiempoCreate(request):
     if request.method=='POST':

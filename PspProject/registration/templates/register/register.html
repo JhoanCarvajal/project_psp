@@ -33,13 +33,13 @@
 					{{register_form.errors}}
 					<form method="POST" action=""> 
 						{% csrf_token %}
-
 						{% for field in register_form %}
-							
 							<label class="sr-only-focusable">{{field.label}}</label>
 							<input class="form-control mb-3" {{field}}
 						{% endfor %}
-
+						{% for field in estudiante_form %}
+          					{{ field }}
+						{% endfor %}
 						<input class="btn btn-lg btn-primary btn-block" type="submit" value="Registarse"/>
 					</form>
     			</div>
@@ -51,13 +51,6 @@
 				</div>
 			</div>
 		</div>
-		{% comment %} <div class="col col-sm-12 d-none d-lg-block col-lg-5 redondeo-der p-0 img-fondo mt-5">
-			<!--<img src="img/fondoLogin.png" class="img-fluid redondeo-der" alt="Responsive image">-->
-			<div class="centrado text-light">
-				<h1>Bienvenido a<img src="{% static 'img/logo_psp.png' %}" width="140" height="40" class="d-inline-block align-top" alt="" loading="lazy"></h1>
-				<h5>Únete a nosotros</h4>
-			</div>
-		</div> {% endcomment %}
 	</div>
 </div>
 </div>

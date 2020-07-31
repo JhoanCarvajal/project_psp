@@ -1,4 +1,7 @@
 {% load static %}
+{% if request.user.is_authenticated %}
+	<script>window.location.href = '/proyectos/lista_proyectos/'; </script>
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>

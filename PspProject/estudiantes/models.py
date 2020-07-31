@@ -3,11 +3,10 @@ from django.conf import settings
 
 # Create your models here.
 class Estudiante(models.Model):
-    id_usuario = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="usuario", on_delete=models.CASCADE)
-    rol = models.CharField(max_length=200)
-    foto = models.TextField()
-    certificacion = models.IntegerField(null=True, blank=True)
-    id_profesor = models.ForeignKey("profesores.Profesor", verbose_name="profesor", on_delete=models.CASCADE)
+    id_usuario = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="estudiante", verbose_name="usuario", on_delete=models.CASCADE)
+    foto = models.TextField(null=True, blank=True)
+    certificacion = models.BooleanField(null=True, blank=True)
+    id_profesor = models.ForeignKey("profesores.Profesor", related_name="profesor_estudiante", verbose_name="profesor", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Estudiante"
@@ -15,4 +14,4 @@ class Estudiante(models.Model):
         ordering = ['id_usuario']
 
     def __str__(self):
-        return self.rol
+        return self.id_usuario.first_name
