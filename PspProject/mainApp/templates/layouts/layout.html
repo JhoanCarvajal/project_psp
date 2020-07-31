@@ -102,7 +102,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-chart-pie"></i> &nbsp; Estadisticas <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="reservation-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de préstamos</a>
+									<a href="{% url 'ver_estadisticas' request.user.id %}"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Grafico 1</a>
 								</li>
 								<li>
 									<a href="reservation-search.html"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; Buscar préstamos</a>
@@ -132,6 +132,9 @@
 						</li>
 						<li>
 							<a href="company.html"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
+						</li>
+						<li>
+							<a href="#"><i class="fas fa-chalkboard-teacher"></i> &nbsp; Profesor</a>
 						</li>
 					</ul>
 				</nav>
@@ -184,6 +187,7 @@
 
 	<script src="{% static 'dashboar/js/main.js' %}" ></script>
 	<script src="{% static 'app.js' %}" ></script>
+	<script src="{% static 'dashboar/js/estadisticas.js' %}" ></script>
 
 	{% block extra %}
 	{% endblock extra %}

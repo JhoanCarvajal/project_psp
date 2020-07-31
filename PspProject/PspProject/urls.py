@@ -49,4 +49,7 @@ urlpatterns = [
 
     path('resportes/', include('reportes.urls')),
 
+    path('graficos/', include('graficos.urls')),
+
+
 ]
