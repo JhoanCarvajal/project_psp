@@ -36,6 +36,8 @@ urlpatterns = [
     path('resportes/', include('reportes.urls')),
     path('profesores/', include('profesores.urls')),
 
+    path('partesReusadas/', include('partesReusadas.urls')),
+    
     path('modulos/', views.modulos, name='modulos'),
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
     path('programa/',programaP.programa, name='programa'),
