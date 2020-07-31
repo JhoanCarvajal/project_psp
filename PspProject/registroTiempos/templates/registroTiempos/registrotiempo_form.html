@@ -1,31 +1,136 @@
+{% extends 'layouts/layout.html' %}
+{% block title %} {{title}} {% endblock title %} 
+
+{% block content %}
 <form action="{% url 'crear_registro_tiempo' %}" method="POST" id="form_tiempo">{% csrf_token %}
     <div class="row">
         <div class="col-sm-6 mb-3">
             <label for="id_fase">Fase*:</label>
-            <select name="id_fase" class="custom-select">
+            <select name="id_fase" class="custom-select" required>
                 <option value="" selected>---------</option>
                 {% for fase in lista_fases %}
                     <option value="{{fase.id}}">{{fase.nombre}}</option>
                 {% endfor %}
             </select>
             <select hidden="" name="id_programa" class="custom-select">
-                <option value="{{programa.id}}" selected>{{programa.nombre}}</option>
+                <option value="{{pr.id}}" selected>{{pr.nombre}}</option>
             </select>
             <label for="id_fecha_inicio">Fecha de Inicio*:</label>
-            <input class="form-control mb-3" type="text" name="fecha_inicio" id="id_fecha_inicio" value="{% now "Y-m-d H:i" %}">
+            <input class="form-control mb-3" type="text" name="fecha_inicio" id="id_fecha_inicio" value="{% now "DATETIME_FORMAT" %}" disabled>
+            
             <label for="id_interrupciones">Interrupciones:</label>
-            <input class="form-control mb-3" type="number" name="interrupciones">
+            <input class="form-control mb-3" type="number" name="interrupciones" value="0" id="id_interrupciones" disabled>
             <label for="id_fecha_final">Fecha de finalización:</label>
-            <input class="form-control mb-3" type="date" name="fecha_final" id="id_fecha_final">
+            <input class="form-control mb-3" type="text" name="fecha_final" id="id_fecha_final" disabled>
         </div>  
         <div class="col-sm-6 ">
             <label for="id_tiempo_total">Timpo tota(Delta):</label>
-            <input class="form-control mb-3" type="number" name="tiempo_total">
+            <input class="form-control mb-3" type="number" name="tiempo_total" value="0" id="id_tiempo_total" disabled>
             <label for="id_comentarios">Comentarios:</label>
             <textarea class="form-control mb-3" name="comentarios" cols="40" rows="7"></textarea> 
-        </div> 
+        </div>
+        <div id="mensaje">
+        </div>
     </div> 
     <div class="mx-auto mb-5" style="width: 200px;">
         <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
     </div>
 </form>
+
+<script>
+var interrupciones = 0;
+
+var fechaInicio;
+var fechaInicioSegundo;
+var fechaInicioMinutos;
+var fechaInicioHora;
+var fechaInicioDia;
+
+var fechaPausa;
+var fechaPausaSegundo;
+var fechaPausaMinutos;
+var fechaPausaHora;
+var fechaPausaDia;
+
+var fechaReanudar;
+var fechaReanudarSegundo;
+var fechaReanudarMinutos;
+var fechaReanudarHora;
+var fechaReanudarDia;
+
+var fechaFin;
+var fechaFinSegundo;
+var fechaFinMinutos;
+var fechaFinHora;
+var fechaFinDia;
+
+function empezar(){
+    var hoy = new Date()
+    var fechaI = hoy.toISOString()
+    fechaInicioSegundo = hoy.getSeconds()
+    fechaInicioMinutos = (hoy.getMinutes() * 60)
+    fechaInicioHora = (hoy.getHours() * 3600)
+    fechaInicioDia = (hoy.getDate() * 86400)
+    fechaInicio = fechaInicioSegundo + fechaInicioMinutos + fechaInicioHora + fechaInicioDia
+    document.getElementById("id_fecha_inicio").value = fechaI
+    document.getElementById("btn_empezar").style.display = "none"
+    document.getElementById("btn_pausar").style.display = "flex"
+    document.getElementById("btn_terminar").style.display = "flex"
+}
+function pausar(){
+    var hoy = new Date()
+    fechaPausaSegundo = hoy.getSeconds()
+    fechaPausaMinutos = (hoy.getMinutes() * 60)
+    fechaPausaHora = (hoy.getHours() * 3600)
+    fechaPausaDia = (hoy.getDate() * 86400)
+    fechaPausa = fechaPausaSegundo + fechaPausaMinutos + fechaPausaHora + fechaPausaDia
+    document.getElementById("btn_pausar").style.display = "none"
+    document.getElementById("btn_reanudar").style.display = "flex"
+    document.getElementById("btn_terminar").style.display = "none"
+}
+function reanudar(){
+    var hoy = new Date()
+    fechaReanudarSegundo = hoy.getSeconds()
+    fechaReanudarMinutos = (hoy.getMinutes() * 60)
+    fechaReanudarHora = (hoy.getHours() * 3600)
+    fechaReanudarDia = (hoy.getDate() * 86400)
+    fechaReanudar = fechaReanudarSegundo + fechaReanudarMinutos + fechaReanudarHora + fechaReanudarDia
+    var segundos = fechaReanudar - fechaPausa 
+    interrupciones += segundos
+    document.getElementById("btn_pausar").style.display = "flex"
+    document.getElementById("btn_reanudar").style.display = "none"
+    document.getElementById("btn_terminar").style.display = "flex"
+}
+function terminar(){
+    var hoy = new Date()
+    fechaFinSegundo = hoy.getSeconds()
+    fechaFinMinutos = (hoy.getMinutes() * 60)
+    fechaFinHora = (hoy.getHours() * 3600)
+    fechaFinDia = (hoy.getDate() * 86400)
+    fechaFin = fechaFinSegundo + fechaFinMinutos + fechaFinHora + fechaFinDia
+    var fechaF = hoy.toISOString()
+    document.getElementById("id_fecha_final").value = fechaF
+    document.getElementById("btn_empezar").style.display = "none"
+    document.getElementById("btn_pausar").style.display = "none"
+    document.getElementById("btn_reanudar").style.display = "none"
+    document.getElementById("btn_terminar").style.display = "none"
+    document.getElementById("id_interrupciones").value = interrupciones
+    document.getElementById("id_tiempo_total").value = (fechaFin - fechaInicio) - interrupciones
+    document.getElementById("mensaje").innerHTML += "Digite un comentario y guarde sus tiempoo"
+}
+
+</script>
+
+
+<button id="btn_empezar" type="button" onclick="empezar()">Empezar</button>
+
+<button id="btn_pausar" style="display: none;" type="button" onclick="pausar()">pausar</button>
+
+<button id="btn_reanudar" style="display: none;" type="button" onclick="reanudar()">reanudar</button>
+
+<button id="btn_terminar" style="display: none;" type="button" onclick="terminar()">terminar</button>
+
+
+
+
+{% endblock content %}

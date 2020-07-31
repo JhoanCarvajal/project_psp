@@ -1,0 +1,32 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Lista de Registro de tiempos{% endblock title %} 
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Fase</th>
+            <th scope="col">Programa</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Descanso</th>
+            <th scope="col">Final</th>
+            <th scope="col">Total</th>
+            <th scope="col">Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tiempo in object_list %}
+            <th scope="row">{{tiempo.id_fase}}</th>
+            <td>{{tiempo.id_programa}}</td>
+            <td>{{tiempo.fecha_inicio}}</td>
+            <td>{{tiempo.interrupciones}}</td>
+            <td>{{tiempo.fecha_finalizacion|date}}</td>
+            <td>{{tiempo.tiempo_total}}</td>
+            <td>{{tiempo.comentarios}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

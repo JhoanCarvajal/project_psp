@@ -1,44 +1,28 @@
 {% load static %}
+{% comment %} {% if request.user.is_superuser%}
+	<script>window.location.href = '/admin'; </script>
+{% endif %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
 	<title>{{title}}</title>
-
 	<!-- Normalize V8.0.1 -->
-
 	<link rel="stylesheet" href="{% static 'dashboar/css/normalize.css' %}">
-
 	<!-- General Styles -->
-
 	<link rel="stylesheet" href="{% static 'dashboar/css/style.css' %}">
-
-	
-
 	<!-- Font Awesome V5.9.0 -->
-
 	<link rel="stylesheet" href="{% static 'dashboar/css/all.css' %}">
-
 	<!-- Sweet Alerts V8.13.0 CSS file  -->
-
 	<link rel="stylesheet" href="{% static 'dashboar/css/sweetalert2.min.css' %}">
-
 	<!-- Sweet Alert V8.13.0 JS file -->
-
 	<script src="{% static 'dashboar/js/sweetalert2.min.js' %}" ></script>
-
 	<!-- jQuery Custom Content Scroller V3.1.5 -->
-
 	<link rel="stylesheet" href="{% static 'dashboar/css/jquery.mCustomScrollbar.css' %}">
-
 	<!-- style -->
-	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
 </head>
 <body>
 	
@@ -53,8 +37,10 @@
 					<img src=" {% static 'dashboar/assets/avatar/Avatar.png' %}" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
 						{{request.user.first_name}} <br>
-						{% if request.user.is_staff %}
+						{% if request.user.is_superuser %}
 							<small class="roboto-condensed-light">Administrador</small>
+						{% elif request.user.is_staff %}
+							<small class="roboto-condensed-light">Profesor</small>
 						{% else %}
 							<small class="roboto-condensed-light">Estudiante</small>
 						{% endif %}
@@ -66,24 +52,25 @@
 						<li>
 							<a href=" {% url 'proyectos' %}"><i class="fas fa-sitemap"></i> &nbsp; Proyectos</a>
 						</li>
+						{% if request.user.profesor %}
 
 						<li>
-							<a href=" {% url 'programas' %}"><i class="fas fa-microchip"></i> &nbsp; Programas</a>
-						</li>
-
-						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-users fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Cliente</a>
+									<a href="user-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo usuario</a>
 								</li>
 								<li>
-									<a href="client-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de clientes</a>
+									<a href="user-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios</a>
 								</li>
 								<li>
-									<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar cliente</a>
+									<a href="user-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario</a>
 								</li>
 							</ul>
+						</li>
+						{% else %}
+						<li>
+							<a href=" {% url 'programas' %}"><i class="fas fa-microchip"></i> &nbsp; Programas</a>
 						</li>
 
 						<li>
@@ -112,27 +99,10 @@
 								</li>
 							</ul>
 						</li>
-
-						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
-							<ul>
-								<li>
-									<a href="user-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo usuario</a>
-								</li>
-								<li>
-									<a href="user-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios</a>
-								</li>
-								<li>
-									<a href="user-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario</a>
-								</li>
-							</ul>
-						</li>
 						<li>
 							<a href="{% url 'lista_reportes' %}"><i class="fas fa-file-invoice"></i> &nbsp; Reportes</a>
 						</li>
-						<li>
-							<a href="company.html"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
-						</li>
+						{% endif %}
 					</ul>
 				</nav>
 			</div>
