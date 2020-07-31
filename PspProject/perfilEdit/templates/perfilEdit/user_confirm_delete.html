@@ -1,5 +1,39 @@
-<form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+
+{% extends 'layouts/layout.html' %}
+
+{% block title %} {{title}} {% endblock title %} 
+{% block content %}
+
+    
+
+    <div class="card text-center mb-5 mt-5">
+        <div class="card-header">
+            Eliminar cuenta!!
+        </div>
+        <div class="card-body">
+            {% if object.id == request.user.id %}
+                <form method="post">
+                    {% csrf_token %}
+                    <i class=" text-danger fas fa-5x fa-exclamation-triangle"></i>
+                    <h5 class="card-title">Estas seguro de eliminar la cuenta "{{ object }}"?</h5>
+                    <p class="card-text">No podrá recuperar ningún avanze realizado en esta cuenta después de eliminarla   </p>
+                    <div class="mb-2" >
+                        <buttom href="{% url 'proyectos' %}" class="btn btn-success">Regresar a inicio</buttom>
+                    </div>
+                    <div class="mb-2">
+                        <input class="btn btn-danger" type="submit" value="Confirm">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                Usuario: {{object.username}}
+            </div>
+            {% else %}
+                <i class="mb-3 text-danger fas fa-10x fa-exclamation-triangle"></i>
+                <div class="card-footer text-muted">
+                    .
+                </div>
+            {% endif %}
+    </div>
+
+{% endblock content %}
