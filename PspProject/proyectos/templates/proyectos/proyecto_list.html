@@ -16,12 +16,14 @@
                         <div class="scroll-project-description">
                             <p class="card-text">{{proyecto.descripcion}} </p>
                         </div>
-                        
-                        <h5 class="card-title">Fecha de creacion</h5>
-                        <p>{{proyecto.fechaInicio|date}} </p>
-                        
-                        <a href="{% url 'lista_programas_usuario' request.user.id proyecto.id %}" class="btn btn-primary">Ver programas</a>
-                        <a class="btn btn-success" href="{% url 'program_create' request.user.id proyecto.id %}">Crear programa</a>
+                        {% if request.user.profesor %}
+                        {% else %}
+                            <h5 class="card-title">Fecha de creacion</h5>
+                            <p>{{proyecto.fechaInicio|date}} </p>
+                            
+                            <a href="{% url 'lista_programas_usuario' request.user.id proyecto.id %}" class="btn btn-primary">Ver programas</a>
+                            <a class="btn btn-success" href="{% url 'program_create' request.user.id proyecto.id %}">Crear programa</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
