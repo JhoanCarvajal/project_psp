@@ -9,18 +9,19 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
+      let lista = {{lista}}
 
       function drawStuff() {
-        
+        let listaD = {{listaD}}
         
         var data = new google.visualization.arrayToDataTable([
           ['', 'Porcentaje%'],
-          ["Planificación (PLAN)", 20 ],
-          ["Diseño (DISE)", 50],
-          ["Desarrollo (DLL)", 12],
-          ["Pruebas ()", 20],
-          ['Inplementacion', 3],
-          ['Mantenimiento', 3]
+          ["Planificación (PLAN)", listaD[0]],
+          ["Diseño (DISE)", listaD[1]],
+          ["Desarrollo (DLL)", listaD[2]],
+          ["Pruebas ()", listaD[3]],
+          ['Inplementacion', listaD[4]],
+          ['Mantenimiento', listaD[5]]
         ]);
 
         var options = {
@@ -51,12 +52,12 @@
         
         var data = new google.visualization.arrayToDataTable([
           ['', 'Porcentaje%'],
-          ["Planificación (PLAN)", 25 ],
-          ["Diseño (DISE)", 40],
-          ["Desarrollo (DLL)", 12],
-          ["Pruebas ()", 15],
-          ['Inplementacion', 3],
-          ['Mantenimiento', 9]
+          ["Planificación (PLAN)", lista[0]],
+          ["Diseño (DISE)", lista[1]],
+          ["Desarrollo (DLL)", lista[2]],
+          ["Pruebas ()", lista[3]],
+          ['Inplementacion', lista[4]],
+          ['Mantenimiento', lista[5]]
         ]);
 
         var options = {
@@ -82,18 +83,6 @@
   <body>
     <div class="mb-5 mt-3" id="top_x_div" style="width: 800px; height: 400px;"></div>
     <div class="mb-5" id="top_x_divv" style="width: 800px; height: 400px;"></div>
-    
-
-
-    {% for j in datos %}
-        <p id="nombre1">{{j.0}}</p>
-        <p id="porcentaje1">{{j.4}}%</p>
-    {% endfor %} 
-
-    {% for j in registro_tiempos_programa %}
-        <p >{{j.0}}</p>
-        <p >{{j.1}}</p>
-    {% endfor %}
 
   </body>
 </html>
