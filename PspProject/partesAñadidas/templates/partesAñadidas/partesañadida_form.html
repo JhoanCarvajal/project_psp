@@ -1,4 +1,56 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Lista de Registro de tiempos{% endblock title %} 
+
+{% block content %}
+
+
+<div class="card mb-5 mt-3">
+    <form method="post">
+        <div class="card-body">
+            <div class="row">
+                {% csrf_token %}
+                <div class="col">
+                    <div><label for="id_id_programa">Proyecto:</label> <select class="form-control" name="id_programa" required id="id_id_programa">
+                    <option value="" selected>---------</option>
+                    
+                    <option value="5">adsfadsf</option>
+                    
+                    <option value="7">banco</option>
+                    
+                    <option value="8">banco</option>
+                    
+                    <option value="3">con psp 1</option>
+                    
+                    <option value="4">con psp 1</option>
+                    
+                    <option value="2">min primer progy</option>
+                    
+                    <option value="1">programa 0</option>
+                    
+                    </select></div>
+                    <div><label for="id_nombre">Nombre:</label> <input class="form-control" type="text" name="nombre" maxlength="50" required id="id_nombre"></div>
+                    <div><label for="id_id_tipo_parte">Tipo de parte:</label> <select class="form-control" name="id_tipo_parte" required id="id_id_tipo_parte">
+                    <option value="" selected>---------</option>
+                
+                    </select></div>
+                    <div><label for="id_items_planeados">Items planeados:</label> <input class="form-control" type="number" name="items_planeados" required id="id_items_planeados"></div>
+                </div>
+                <div class="col">
+                    <div><label for="id_id_tamaño_items">Tamaño de items:</label> <select class="form-control" name="id_tamaño_items" required id="id_id_tamaño_items">
+                    <option value="" selected>---------</option>
+                    
+                    </select></div>
+                    <div><label for="id_tamaño_planeado">Tamaño planeado:</label> <input class="form-control" type="number" name="tamaño_planeado" required id="id_tamaño_planeado"></div>
+                    <div><label for="id_items_acuales">Items actuales:</label> <input class="form-control" type="number" name="items_acuales" required id="id_items_acuales"></div>
+                    <div><label for="id_tamaño_actual">Tamaño actual:</label> <input class="form-control" type="number" name="tamaño_actual" required id="id_tamaño_actual"></div>
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <input class="btn btn-success" type="submit" value="Save">
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
