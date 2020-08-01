@@ -1,4 +1,81 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Lista de Registro de tiempos{% endblock title %} 
+
+{% block content %}
+
+<div class="card mb-4 mt-3">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <p><label for="id_id_programa">Programa:</label> <select class="form-control" name="id_programa" required id="id_id_programa">
+                    <option value="" selected></option>
+                    
+                    <option value="5">adsfadsf</option>
+                    
+                    <option value="7">banco</option>
+                    
+                    <option value="8">banco</option>
+                    
+                    <option value="3">con psp 1</option>
+                    
+                    <option value="4">con psp 1</option>
+                    
+                    <option value="2">min primer progy</option>
+                    
+                    <option value="1">programa 0</option>
+                    
+                    </select></p>
+                    <p><label for="id_id_parte_general">Parte General:</label> <select class="form-control" name="id_parte_general" required id="id_id_parte_general">
+                    <option value="" selected>---------</option>
+                        {% for j in partes_generales %}
+                            <option value="{{j.id}}">{{j.nombre}}</option>
+                        {% endfor %}
+                    
+                    
+                    </select></p>
+                    <p><label for="id_baseplan">Planeado base:</label> <input class="form-control" type="number" name="baseplan" required id="id_baseplan"></p>
+                    <p><label for="id_planDel">Planeado a eliminar:</label> <input class="form-control" type="number" name="planDel" required id="id_planDel"></p>
+                    <div class="form-group">
+                        <label for="id_planMod">Planeado a modificar:</label> 
+                        <input class="form-control" type="number" name="planMod" required id="id_planMod">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="id_planAdd">Planeado a añadir:</label> 
+                        <input class="form-control" type="number" name="planAdd" required id="id_planAdd">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_actualBase">Actual base:</label> 
+                        <input class="form-control" type="number" name="actualBase" required id="id_actualBase">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_actualDel">Actual a eliminar:</label> 
+                        <input class="form-control" type="number" name="actualDel" required id="id_actualDel">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_actualMod">Actual a modificar:</label> 
+                        <input class="form-control" type="number" name="actualMod" required id="id_actualMod">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_actualAdd">Actual a añadir:</label> 
+                        <input class="form-control" type="number" name="actualAdd" required id="id_actualAdd">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted  text-center">
+                <input class="btn btn-success" type="submit" value="Guardar">  
+            </div>
+  
+        </form>
+        
+    </div>
+</div>
+
+
+
+{% endblock content %}

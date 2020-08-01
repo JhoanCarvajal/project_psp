@@ -2,36 +2,7 @@
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
-<form action="" method="POST">{% csrf_token %}
-<div class="input-group mb-3">
-    <p><label for="id_id_fase">Fase:</label> 
-    <select name="id_fase" class="custom-select" required id="id_id_fase">
-    <option value="" selected>---------</option>
-    {% for fase in lista_fases %}
-        <option value="{{fase.id}}">{{fase.nombre}}</option>
-    {% endfor %}
 
-</select></p>
-<input name="id_programa" hidden="" type="text" value="{{programa.id}}" class="custom-select" required id="id_id_programa">
-
-        <p><label for="id_fecha_inicio">Fecha de inicio:</label> 
-        <input class="form-control" type="text" name="fecha_inicio" required id="id_fecha_inicio"></p>
-        <p><label for="id_interrupciones">Interrupciones:</label> 
-        <input class="form-control" type="number" name="interrupciones" id="id_interrupciones"></p>
-        <p><label for="id_fecha_final">Fecha de finalización:</label> 
-        <input class="form-control" type="text" name="fecha_final" id="id_fecha_final"></p>
-        <p><label for="id_tiempo_total">Timpo tota(Delta):</label> 
-        <input class="form-control" type="number" name="tiempo_total" id="id_tiempo_total"></p>
-
-</div>
-        <p><label for="id_comentarios">Comentarios:</label> 
-        <textarea class="form-control mb-3" name="comentarios" cols="40" rows="2" id="id_comentarios">
-        </textarea></p>
-
-    <div class="mx-auto mb-5" style="width: 200px;">
-        <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
-    </div>
-</form>
 
 <script>
 var interrupciones = 0;
@@ -118,15 +89,68 @@ function terminar(){
 </script>
 
 
-<button id="btn_empezar" type="button" onclick="empezar()">Empezar</button>
-
-<button id="btn_pausar" style="display: none;" type="button" onclick="pausar()">pausar</button>
-
-<button id="btn_reanudar" style="display: none;" type="button" onclick="reanudar()">reanudar</button>
-
-<button id="btn_terminar" style="display: none;" type="button" onclick="terminar()">terminar</button>
 
 
+    <div class="card mt-4 mb-4">
+        <h5 class="card-header">Registro de tiempo</h5>
+        <div class="card-body">
+            <h5 class="card-title">{{programa.nombre}}</h5>
+            
+            <div class="">
+                <form action="" method="POST">{% csrf_token %}
+                    <div class="input-group mb-3">
+                        <p><label for="id_id_fase">Fase:</label> 
+                        <select name="id_fase" class="custom-select" required id="id_id_fase">
+                            <option value="" selected>---------</option>
+                            {% for fase in lista_fases %}
+                                <option value="{{fase.id}}">{{fase.nombre}}</option>
+                            {% endfor %}
+                        </select></p>
+                            <input name="id_programa" hidden="" type="text" value="{{programa.id}}" class="custom-select" required id="id_id_programa">
+
+                            <div>
+                                <label for="id_fecha_inicio">Fecha de inicio:</label> 
+                                <input class="form-control" type="text" name="fecha_inicio" required id="id_fecha_inicio">
+                            </div>
+
+                            <div>
+                                <label for="id_interrupciones">Interrupciones:</label> 
+                                <input class="form-control" type="number" name="interrupciones" id="id_interrupciones">
+                            </div>
+
+                            <div>
+                                <label for="id_fecha_final">Fecha de finalización:</label> 
+                                <input class="form-control" type="text" name="fecha_final" id="id_fecha_final">
+                            </div>
+
+                            <div>
+                                <label for="id_tiempo_total">Timpo tota(Delta):</label> 
+                                <input class="form-control" type="number" name="tiempo_total" id="id_tiempo_total">
+                            </div>
+                    </div>
+                        <div>
+                            <label for="id_comentarios">Comentarios:</label> 
+                            <textarea class="form-control mb-3" name="comentarios" cols="40" rows="2" id="id_comentarios">
+                            </textarea>
+                        </div>
+
+                    <div class="mx-auto mb-5" style="width: 200px;">
+                        <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+                    </div>
+                </form>
+                
+                <div class="modal-footer">
+                    <button class="btn btn-success mb-2" id="btn_empezar" type="button" onclick="empezar()">Empezar</button>
+                
+                    <button class="btn btn-info mb-2" id="btn_pausar" style="display: none;" type="button" onclick="pausar()">pausar</button>
+                    
+                    <button class="btn btn-success mb-2" id="btn_reanudar" style="display: none;" type="button" onclick="reanudar()">reanudar</button>
+                    
+                    <button class="btn btn-info mb-2" id="btn_terminar" style="display: none;" type="button" onclick="terminar()">terminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock content %}

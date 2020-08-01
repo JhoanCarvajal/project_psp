@@ -1,11 +1,19 @@
 {% extends 'layouts/layout.html' %}
-
+{% load static %}
 {% block title %} {{title}} {% endblock title %} 
 
 {% block content %}
     <h1>Perfil</h1>
     <div class="container mb-5"> 
         <div class="card"> 
+            <div class="container" style="width: 20rem;">
+                <figure class="full-box nav-lateral-avatar">
+                    <img style="width=10rem; height=10rem;" src=" {% static 'dashboar/assets/avatar/Avatar.png' %}"  alt="Avatar">
+                </figure>
+            </div>
+
+            
+
             <div class="card-body row"> 
                 <div class="form-group col-sm-6">
                     <label for="nameUser">Nombre de usuario</label>
@@ -19,12 +27,28 @@
                     <label for="userApellido">Apellidos</label>
                     <input type="text" class="form-control" id="userApellido" value="{{request.user.last_name}}" disabled>
                 </div>
+
+                {% if request.user.profesor.id_usuario.id == request.user.id %}
+                    <div class="form-group col-sm-6">
+                        <label for="name">Numero</label>
+                        <input type="text" class="form-control" id="name" value="{{request.user.profesor.contacto}}" disabled>
+                        
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="userApellido">Biografia</label>
+                        <input type="text" class="form-control" id="userApellido" value="{{request.user.profesor.biografia}}" disabled>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="text-center mb-3">
+            {% comment %} <a href={% url 'actualizar_cuenta' request.user.id %} class="btn btn-primary">Editar</a> {% endcomment %}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
+                    Editar
+                </button>
             </div>
             
-            <a href={% url 'actualizar_cuenta' request.user.id %} class="btn btn-primary">Editar</a>
-            {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
-                Editar
-            </button> {% endcomment %}
+            
             
         </div>   
     </div>
@@ -37,19 +61,19 @@
                     <label for="nameUser">Cambiar contraseña</label>
                     <input type="text" class="form-control mb-2" id="nameUser" value="**************" disabled>
                     
-                    <a href={% url 'password_change' %} class="btn btn-primary">Cambiar contraseña</a>
-                    {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
+                    {% comment %} <a href={% url 'password_change' %} class="btn btn-primary">Cambiar contraseña</a> {% endcomment %}
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
                         Cambiar contraseña
-                    </button> {% endcomment %}
+                    </button> 
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Borrar cuanta</label>
                     <input type="text" class="form-control mb-2" id="name" value="{{request.user.email}}" disabled>
 
-                    <a href={% url 'eliminar_mi_cuenta' request.user.id %} class="btn btn-primary">Eliminar cuenta</a>
-                    {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDaleteU" onclick="modalDaletePerfil('{{request.user.username}}')">
+                    {% comment %} <a href={% url 'eliminar_mi_cuenta' request.user.id %} class="btn btn-primary">Eliminar cuenta</a> {% endcomment %}
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDaleteU" onclick="modalDaletePerfil('{{request.user.username}}')">
                         Eliminar cuanta
-                    </button> {% endcomment %}
+                    </button> 
                 </div>
             </div>
         </div>   
@@ -112,27 +136,36 @@
 
      <!-- Modal dalete user-->
     <div class="modal fade" id="modalDaleteU" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Borrar cuenta</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Eliminar cuenta!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+
+            <div class="card-body text-center">
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <i class=" text-danger fas fa-5x fa-exclamation-triangle"></i>
+                    <h5 class="card-title">Estas seguro de eliminar la cuenta "{{ object }}"?</h5>
+                    <p class="card-text">No podrá recuperar ningún avanze realizado en esta cuenta después de eliminarla   </p>
+                        
+                    <div class="mb-2">
+                        <input class="btn btn-danger" type="submit" value="Confirmar">
+                    </div>
+                </form>
+                    
+                
+                <div class="card-footer text-muted">
+                    Usuario: {{object.username}} 
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <label>Nombre de usuario</label>
-            <input class="form-control mb-3" type="text"  id="DaleteUser" disabled></input>
-            <label>Codigo de verifiacion</label>
-            <input class="form-control mb-3" type="text"  id="newPassword"></input>
-            
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Aceptar</button>
-        </div>
-        </div>
-    </div>
     </div>
 
     <script type="text/javascript">

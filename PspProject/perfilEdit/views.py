@@ -32,4 +32,4 @@ class UserUpdate(UpdateView):
     template_name = "perfilEdit/user_form.html"
 
     def get_success_url(self):
-        return reverse_lazy('proyectos')
+        return reverse_lazy('editPerfilUs')

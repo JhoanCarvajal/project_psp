@@ -1,4 +1,65 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Lista de Registro de tiempos{% endblock title %} 
+
+{% block content %}
+<div class="card mt-4 mb-5">
+    <form method="post">
+        <div class="card-body">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <label for="id_id_programa">Programa:</label> 
+                            <select class="form-control" name="id_programa" required id="id_id_programa">
+                            <option value="" selected>---------</option>
+                            
+                            <option value="5">adsfadsf</option>
+                            
+                            <option value="7">banco</option>
+                            
+                            <option value="8">banco</option>
+                            
+                            <option value="3">con psp 1</option>
+                            
+                            <option value="4">con psp 1</option>
+                            
+                            <option value="2">min primer progy</option>
+                            
+                            <option value="1">programa 0</option>
+                        
+                        </select>
+                    </p>
+                    <p>
+                        <label for="id_id_parte_general">Parte General:</label> 
+                        <select class="form-control" name="id_parte_general" required id="id_id_parte_general">
+                        <option value="" selected>---------</option>
+                        
+                        <option value="1">sdfaafa</option>
+                        
+                        </select>
+                    </p>
+                </div>
+                
+                <div class="col">
+                    <div class="form-group">
+                        <label for="id_plan">Tamaño planeado:</label> 
+                        <input class="form-control" type="number" name="plan" required id="id_plan">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="id_actual">Tamaño actual:</label> 
+                        <input class="form-control" type="number" name="actual" required id="id_actual">
+                    </div>
+                    
+                </div>
+            </div>
+                <div class="text-center">
+                    <input class="btn btn-success" type="submit" value="Guardar">
+                </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}
