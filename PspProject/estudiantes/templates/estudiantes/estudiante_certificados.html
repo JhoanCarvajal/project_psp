@@ -1,0 +1,5 @@
+{% for estudiante in estudiantes %}
+{% if estudiante.id_profesor.id == request.user.profesor.id and estudiante.certificacion == True %}
+<p>{{estudiante.id_usuario.first_name}} ----------- {{estudiante.certificacion}}</p>
+{% endif %}
+{% endfor %}

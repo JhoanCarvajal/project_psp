@@ -21,6 +21,7 @@ from django.db.models import Sum
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.base import TemplateView
 #funciones
 from .funciones.resumen_tiempos import matrizResumenTiempos
 from .funciones.defectos_en_fase import defectos_en_fase
@@ -108,4 +109,12 @@ class ProgramaCreate(CreateView):
         context = super(ProgramaCreate, self).get_context_data(**kwargs)
         context["id_p"] = Proyecto.objects.get(id=self.kwargs.get('id_p'))
         context["id_u"] = User.objects.get(id=self.kwargs.get('id_u'))
+        return context
+
+class InfoPrograma(TemplateView):
+    template_name = "programas/includes/info.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['programa'] = Programa.objects.filter(id=self.kwargs.get('pk'))
         return context

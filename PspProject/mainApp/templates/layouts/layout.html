@@ -58,13 +58,13 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-users"></i> &nbsp; Estudiantes <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="user-new.html"><i class="fas fa-user"></i> &nbsp; No sertificados</a>
+									<a href="{% url 'lista_no_certificados' %}"><i class="fas fa-user"></i> &nbsp; No certificados</a>
 								</li>
 								<li>
-									<a href="user-list.html"><i class="fas fa-user-check"></i> &nbsp; Sertificar</a>
+									<a href="{% url 'lista_certificar' %}"><i class="fas fa-user-check"></i> &nbsp; Certificar</a>
 								</li>
 								<li>
-									<a href="user-list.html"><i class="fas fa-user-graduate"></i> &nbsp; Sertificados</a>
+									<a href="{% url 'lista_certificados' %}"><i class="fas fa-user-graduate"></i> &nbsp; Certificados</a>
 								</li>
 							</ul>
 						</li>
