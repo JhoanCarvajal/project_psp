@@ -12,8 +12,12 @@ from django.views.generic.base import TemplateView
 from programas.models import Programa
 from .models import RegistroTiempo
 from mainApp.models import Fase
+#requerir login
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class TiemposListView(ListView):
     model = RegistroTiempo
     template_name = "registrotiempos_list.html"
@@ -22,7 +26,8 @@ class TiemposListView(ListView):
         context = super().get_context_data(**kwargs)
         context["pk"] = Programa.objects.get(id=self.kwargs.get('pk'))
         return context
-    
+
+@method_decorator(login_required, name='dispatch')
 class RegistroTiempoCreate(CreateView):
     model = RegistroTiempo
     fields = ['id_fase','id_programa', 'fecha_inicio','interrupciones','fecha_final', 'tiempo_total', 'comentarios']

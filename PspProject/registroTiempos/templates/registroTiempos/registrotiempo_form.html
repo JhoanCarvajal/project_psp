@@ -34,10 +34,10 @@ var fechaFinDia;
 function empezar(){
     var hoy = new Date()
     var fechaI = hoy.toLocaleString()
-    fechaInicioSegundo = hoy.getSeconds()
-    fechaInicioMinutos = (hoy.getMinutes() * 60)
-    fechaInicioHora = (hoy.getHours() * 3600)
-    fechaInicioDia = (hoy.getDate() * 86400)
+    fechaInicioSegundo = (hoy.getSeconds() / 60)
+    fechaInicioMinutos = hoy.getMinutes()
+    fechaInicioHora = (hoy.getHours() * 60)
+    fechaInicioDia = (hoy.getDate() * 3600)
     fechaInicio = fechaInicioSegundo + fechaInicioMinutos + fechaInicioHora + fechaInicioDia
     document.getElementById("id_fecha_inicio").value = fechaI
     document.getElementById("btn_empezar").style.display = "none"
@@ -46,10 +46,10 @@ function empezar(){
 }
 function pausar(){
     var hoy = new Date()
-    fechaPausaSegundo = hoy.getSeconds()
-    fechaPausaMinutos = (hoy.getMinutes() * 60)
-    fechaPausaHora = (hoy.getHours() * 3600)
-    fechaPausaDia = (hoy.getDate() * 86400)
+    fechaPausaSegundo = (hoy.getSeconds() / 60)
+    fechaPausaMinutos = hoy.getMinutes()
+    fechaPausaHora = (hoy.getHours() * 60)
+    fechaPausaDia = (hoy.getDate() * 3600)
     fechaPausa = fechaPausaSegundo + fechaPausaMinutos + fechaPausaHora + fechaPausaDia
     document.getElementById("btn_pausar").style.display = "none"
     document.getElementById("btn_reanudar").style.display = "flex"
@@ -57,10 +57,10 @@ function pausar(){
 }
 function reanudar(){
     var hoy = new Date()
-    fechaReanudarSegundo = hoy.getSeconds()
-    fechaReanudarMinutos = (hoy.getMinutes() * 60)
-    fechaReanudarHora = (hoy.getHours() * 3600)
-    fechaReanudarDia = (hoy.getDate() * 86400)
+    fechaReanudarSegundo = (hoy.getSeconds()/60)
+    fechaReanudarMinutos = hoy.getMinutes()
+    fechaReanudarHora = (hoy.getHours() * 60)
+    fechaReanudarDia = (hoy.getDate() * 3600)
     fechaReanudar = fechaReanudarSegundo + fechaReanudarMinutos + fechaReanudarHora + fechaReanudarDia
     var segundos = fechaReanudar - fechaPausa 
     interrupciones += segundos
@@ -70,10 +70,10 @@ function reanudar(){
 }
 function terminar(){
     var hoy = new Date()
-    fechaFinSegundo = hoy.getSeconds()
-    fechaFinMinutos = (hoy.getMinutes() * 60)
-    fechaFinHora = (hoy.getHours() * 3600)
-    fechaFinDia = (hoy.getDate() * 86400)
+    fechaFinSegundo = (hoy.getSeconds() /60)
+    fechaFinMinutos = hoy.getMinutes()
+    fechaFinHora = (hoy.getHours() * 60)
+    fechaFinDia = (hoy.getDate() * 3600)
     fechaFin = fechaFinSegundo + fechaFinMinutos + fechaFinHora + fechaFinDia
     var fechaF = hoy.toLocaleString()
     document.getElementById("id_fecha_final").value = fechaF
@@ -81,9 +81,10 @@ function terminar(){
     document.getElementById("btn_pausar").style.display = "none"
     document.getElementById("btn_reanudar").style.display = "none"
     document.getElementById("btn_terminar").style.display = "none"
-    document.getElementById("id_interrupciones").value = interrupciones
-    document.getElementById("id_tiempo_total").value = (fechaFin - fechaInicio) - interrupciones
-    document.getElementById("mensaje").innerHTML += "Digite un comentario y guarde sus tiempoo"
+    document.getElementById("id_interrupciones").value = Math.round(interrupciones)
+    var t = (fechaFin - fechaInicio) - interrupciones
+    document.getElementById("id_tiempo_total").value = Math.round((t)
+    document.getElementById("mensaje").innerHTML += "Escriba un comentario y guarde sus tiempoo"
 }
 
 </script>

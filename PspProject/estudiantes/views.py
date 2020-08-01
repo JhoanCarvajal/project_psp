@@ -4,7 +4,12 @@ from django.views.generic.base import TemplateView
 from .models import Estudiante
 from programas.models import Programa
 
+#requerir login
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class EstudiantesNoCertificados(TemplateView):
     template_name = "estudiantes/estudiante_no_certificados.html"
 

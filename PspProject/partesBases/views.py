@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView
 #modelo
 from .models import PartesBase
 from partesGenerales.models import PartesGeneral
+from programas.models import Programa
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -20,6 +21,7 @@ class ParteBaseCreate(CreateView):
     success_url = reverse_lazy('proyectos')
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["programa"] = Programa.objects.get(id=self.kwargs.get('pk'))
         context["partes_generales"] = PartesGeneral.objects.all()
         return context
-    #pendiente
+

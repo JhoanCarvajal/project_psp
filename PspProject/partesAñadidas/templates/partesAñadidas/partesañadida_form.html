@@ -12,26 +12,15 @@
                 {% csrf_token %}
                 <div class="col">
                     <div><label for="id_id_programa">Proyecto:</label> <select class="form-control" name="id_programa" required id="id_id_programa">
-                    <option value="" selected>---------</option>
-                    
-                    <option value="5">adsfadsf</option>
-                    
-                    <option value="7">banco</option>
-                    
-                    <option value="8">banco</option>
-                    
-                    <option value="3">con psp 1</option>
-                    
-                    <option value="4">con psp 1</option>
-                    
-                    <option value="2">min primer progy</option>
-                    
-                    <option value="1">programa 0</option>
+                    <option value="{{programa.id}}" selected>{{programa.nombre}}</option>
                     
                     </select></div>
                     <div><label for="id_nombre">Nombre:</label> <input class="form-control" type="text" name="nombre" maxlength="50" required id="id_nombre"></div>
                     <div><label for="id_id_tipo_parte">Tipo de parte:</label> <select class="form-control" name="id_tipo_parte" required id="id_id_tipo_parte">
                     <option value="" selected>---------</option>
+                    {% for p in partes_generales %}
+                        <option value="{{p.id}}" selected>{{p.nombre}}</option>
+                    {% endfor %}
                 
                     </select></div>
                     <div><label for="id_items_planeados">Items planeados:</label> <input class="form-control" type="number" name="items_planeados" required id="id_items_planeados"></div>
@@ -39,6 +28,9 @@
                 <div class="col">
                     <div><label for="id_id_tamaño_items">Tamaño de items:</label> <select class="form-control" name="id_tamaño_items" required id="id_id_tamaño_items">
                     <option value="" selected>---------</option>
+                    {% for tm in tms %}
+                        <option value="{{tm.id}}" selected>{{tm.nombre}}</option>
+                    {% endfor %}
                     
                     </select></div>
                     <div><label for="id_tamaño_planeado">Tamaño planeado:</label> <input class="form-control" type="number" name="tamaño_planeado" required id="id_tamaño_planeado"></div>

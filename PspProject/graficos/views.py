@@ -25,8 +25,12 @@ from django.views.generic.base import TemplateView
 from .funciones.resumen_tiempos import matrizResumenTiempos
 from .funciones.defectos_en_fase import defectos_en_fase
 from .funciones.defectos_removidos_fase import defectos_removidos_fase
+#requerir login
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 # Create your views here.
 
-
+@method_decorator(login_required, name='dispatch')
 class GraficosDetailView(TemplateView):
     template_name = "graficosPie/grafico1.html"
