@@ -1,31 +1,157 @@
-<form action="{% url 'crear_registro_tiempo' %}" method="POST" id="form_tiempo">{% csrf_token %}
-    <div class="row">
-        <div class="col-sm-6 mb-3">
-            <label for="id_fase">Fase*:</label>
-            <select name="id_fase" class="custom-select">
-                <option value="" selected>---------</option>
-                {% for fase in lista_fases %}
-                    <option value="{{fase.id}}">{{fase.nombre}}</option>
-                {% endfor %}
-            </select>
-            <select hidden="" name="id_programa" class="custom-select">
-                <option value="{{programa.id}}" selected>{{programa.nombre}}</option>
-            </select>
-            <label for="id_fecha_inicio">Fecha de Inicio*:</label>
-            <input class="form-control mb-3" type="text" name="fecha_inicio" id="id_fecha_inicio" value="{% now "Y-m-d H:i" %}">
-            <label for="id_interrupciones">Interrupciones:</label>
-            <input class="form-control mb-3" type="number" name="interrupciones">
-            <label for="id_fecha_final">Fecha de finalización:</label>
-            <input class="form-control mb-3" type="date" name="fecha_final" id="id_fecha_final">
-        </div>  
-        <div class="col-sm-6 ">
-            <label for="id_tiempo_total">Timpo tota(Delta):</label>
-            <input class="form-control mb-3" type="number" name="tiempo_total">
-            <label for="id_comentarios">Comentarios:</label>
-            <textarea class="form-control mb-3" name="comentarios" cols="40" rows="7"></textarea> 
-        </div> 
-    </div> 
-    <div class="mx-auto mb-5" style="width: 200px;">
-        <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+{% extends 'layouts/layout.html' %}
+{% block title %} Registro tiempos {% endblock title %} 
+
+{% block content %}
+
+
+<script>
+var interrupciones = 0;
+
+var fechaInicio;
+var fechaInicioSegundo;
+var fechaInicioMinutos;
+var fechaInicioHora;
+var fechaInicioDia;
+
+var fechaPausa;
+var fechaPausaSegundo;
+var fechaPausaMinutos;
+var fechaPausaHora;
+var fechaPausaDia;
+
+var fechaReanudar;
+var fechaReanudarSegundo;
+var fechaReanudarMinutos;
+var fechaReanudarHora;
+var fechaReanudarDia;
+
+var fechaFin;
+var fechaFinSegundo;
+var fechaFinMinutos;
+var fechaFinHora;
+var fechaFinDia;
+
+function empezar(){
+    var hoy = new Date()
+    var fechaI = hoy.toLocaleString()
+    fechaInicioSegundo = (hoy.getSeconds() / 60)
+    fechaInicioMinutos = hoy.getMinutes()
+    fechaInicioHora = (hoy.getHours() * 60)
+    fechaInicioDia = (hoy.getDate() * 3600)
+    fechaInicio = fechaInicioSegundo + fechaInicioMinutos + fechaInicioHora + fechaInicioDia
+    document.getElementById("id_fecha_inicio").value = fechaI
+    document.getElementById("btn_empezar").style.display = "none"
+    document.getElementById("btn_pausar").style.display = "flex"
+    document.getElementById("btn_terminar").style.display = "flex"
+}
+function pausar(){
+    var hoy = new Date()
+    fechaPausaSegundo = (hoy.getSeconds() / 60)
+    fechaPausaMinutos = hoy.getMinutes()
+    fechaPausaHora = (hoy.getHours() * 60)
+    fechaPausaDia = (hoy.getDate() * 3600)
+    fechaPausa = fechaPausaSegundo + fechaPausaMinutos + fechaPausaHora + fechaPausaDia
+    document.getElementById("btn_pausar").style.display = "none"
+    document.getElementById("btn_reanudar").style.display = "flex"
+    document.getElementById("btn_terminar").style.display = "none"
+}
+function reanudar(){
+    var hoy = new Date()
+    fechaReanudarSegundo = (hoy.getSeconds()/60)
+    fechaReanudarMinutos = hoy.getMinutes()
+    fechaReanudarHora = (hoy.getHours() * 60)
+    fechaReanudarDia = (hoy.getDate() * 3600)
+    fechaReanudar = fechaReanudarSegundo + fechaReanudarMinutos + fechaReanudarHora + fechaReanudarDia
+    var segundos = fechaReanudar - fechaPausa 
+    interrupciones += segundos
+    document.getElementById("btn_pausar").style.display = "flex"
+    document.getElementById("btn_reanudar").style.display = "none"
+    document.getElementById("btn_terminar").style.display = "flex"
+}
+function terminar(){
+    var hoy = new Date()
+    fechaFinSegundo = (hoy.getSeconds() /60)
+    fechaFinMinutos = hoy.getMinutes()
+    fechaFinHora = (hoy.getHours() * 60)
+    fechaFinDia = (hoy.getDate() * 3600)
+    fechaFin = fechaFinSegundo + fechaFinMinutos + fechaFinHora + fechaFinDia
+    var fechaF = hoy.toLocaleString()
+    document.getElementById("id_fecha_final").value = fechaF
+    document.getElementById("btn_empezar").style.display = "none"
+    document.getElementById("btn_pausar").style.display = "none"
+    document.getElementById("btn_reanudar").style.display = "none"
+    document.getElementById("btn_terminar").style.display = "none"
+    document.getElementById("id_interrupciones").value = Math.round(interrupciones)
+    var t = (fechaFin - fechaInicio) - interrupciones
+    document.getElementById("id_tiempo_total").value = Math.round(t)
+    document.getElementById("mensaje").innerHTML += "Escriba un comentario y guarde sus tiempoo"
+}
+
+</script>
+
+
+
+
+    <div class="card mt-4 mb-4">
+        <h5 class="card-header">Registro de tiempo</h5>
+        <div class="card-body">
+            <h5 class="card-title">{{programa.nombre}}</h5>
+            
+            <div class="">
+                <form action="" method="POST">{% csrf_token %}
+                    <div class="input-group mb-3">
+                        <p><label for="id_id_fase">Fase:</label> 
+                        <select name="id_fase" class="custom-select" required id="id_id_fase">
+                            <option value="" selected>---------</option>
+                            {% for fase in lista_fases %}
+                                <option value="{{fase.id}}">{{fase.nombre}}</option>
+                            {% endfor %}
+                        </select></p>
+                            <input name="id_programa" hidden="" type="text" value="{{programa.id}}" class="custom-select" required id="id_id_programa">
+
+                            <div>
+                                <label for="id_fecha_inicio">Fecha de inicio:</label> 
+                                <input class="form-control" type="text" name="fecha_inicio" required id="id_fecha_inicio">
+                            </div>
+
+                            <div>
+                                <label for="id_interrupciones">Interrupciones:</label> 
+                                <input class="form-control" type="number" name="interrupciones" id="id_interrupciones">
+                            </div>
+
+                            <div>
+                                <label for="id_fecha_final">Fecha de finalización:</label> 
+                                <input class="form-control" type="text" name="fecha_final" id="id_fecha_final">
+                            </div>
+
+                            <div>
+                                <label for="id_tiempo_total">Timpo tota(Delta):</label> 
+                                <input class="form-control" type="number" name="tiempo_total" id="id_tiempo_total">
+                            </div>
+                    </div>
+                        <div>
+                            <label for="id_comentarios">Comentarios:</label> 
+                            <textarea class="form-control mb-3" name="comentarios" cols="40" rows="2" id="id_comentarios">
+                            </textarea>
+                        </div>
+
+                    <div class="mx-auto mb-5" style="width: 200px;">
+                        <button type="submit" class="btn btn-success mx-auto" style="width: 200px;">Guardar</button>
+                    </div>
+                </form>
+                
+                <div class="modal-footer">
+                    <button class="btn btn-success mb-2" id="btn_empezar" type="button" onclick="empezar()">Empezar</button>
+                
+                    <button class="btn btn-info mb-2" id="btn_pausar" style="display: none;" type="button" onclick="pausar()">pausar</button>
+                    
+                    <button class="btn btn-success mb-2" id="btn_reanudar" style="display: none;" type="button" onclick="reanudar()">reanudar</button>
+                    
+                    <button class="btn btn-info mb-2" id="btn_terminar" style="display: none;" type="button" onclick="terminar()">terminar</button>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+
+
+{% endblock content %}

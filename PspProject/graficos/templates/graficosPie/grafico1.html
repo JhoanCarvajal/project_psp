@@ -1,0 +1,91 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} Grafico-estadisticas {% endblock title %} 
+
+{% block content %}
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+      let lista = {{lista}}
+
+      function drawStuff() {
+        let listaD = {{listaD}}
+        
+        var data = new google.visualization.arrayToDataTable([
+          ['', 'Porcentaje%'],
+          ["Planificación (PLAN)", listaD[0]],
+          ["Diseño (DISE)", listaD[1]],
+          ["Desarrollo (DLL)", listaD[2]],
+          ["Pruebas ()", listaD[3]],
+          ['Inplementacion', listaD[4]],
+          ['Mantenimiento', listaD[5]]
+        ]);
+
+        var options = {
+          title: '',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Errores por fase',
+                   subtitle: '' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Porcentaje %'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "60%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+
+
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStufff);
+
+      function drawStufff() {
+        
+        
+        var data = new google.visualization.arrayToDataTable([
+          ['', 'Porcentaje%'],
+          ["Planificación (PLAN)", lista[0]],
+          ["Diseño (DISE)", lista[1]],
+          ["Desarrollo (DLL)", lista[2]],
+          ["Pruebas ()", lista[3]],
+          ['Inplementacion', lista[4]],
+          ['Mantenimiento', lista[5]]
+        ]);
+
+        var options = {
+          title: '',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Tiempo por fase',
+                   subtitle: '' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Porcentaje %'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "60%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_divv'));
+        chart.draw(data, options);
+      };
+    </script>
+  </head>
+  <body>
+    <div class="mb-5 mt-3" id="top_x_div" style="width: 800px; height: 400px;"></div>
+    <div class="mb-5" id="top_x_divv" style="width: 800px; height: 400px;"></div>
+
+  </body>
+</html>
+    
+
+{% endblock content %}

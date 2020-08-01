@@ -22,7 +22,7 @@ def matrizResumenTiempos(tiempos_programa, fases, cantidad_fases):
                     parcial += t.tiempo_total
         lista_plan.append("No Aplica")
         lista_actual.append(parcial)
-        lista_to_date.append(parcial/60)
+        lista_to_date.append(round((parcial/60), 2))
         total = total_actual()
         porcen = 0
         if total != 0:

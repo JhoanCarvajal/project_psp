@@ -1,17 +1,21 @@
 {% extends 'layouts/layout.html' %}
 
-{% block title %} {{title}} {% endblock title %} 
+{% block title %} Detalles del programa {% endblock title %} 
 
 {% block content %}
 
 {% if programa.id_usuario.id == request.user.id %}
 
-
     <h1>{{title}}</h1>
     <div class="row">
         <div class="col clearfix">
             <h3 class="float-left">{{programa.nombre}}</h3>
-            <button  onclick="reporte('{% url 'create_reportes' %}')" class="float-right btn btn-success float-right" type="button" >Realizar reporte</button > 
+            {% if psp >= 1 %}
+            <a  href="{% url 'create_reportes' programa.id %}" class="float-right btn btn-success float-right" type="button" >Realizar reporte</a >
+            {% endif %} 
+            {% if psp >= 0.1 %}
+            <a  href="{% url 'crear_pip' %}" class="float-right btn btn-success mr-3" type="button" >Crear Pip</a >
+            {% endif %}  
         </div>
     </div>
     
@@ -55,25 +59,6 @@
     </div>
 {% endif %}
 
-
-<div class="modal fade"  id="modalreporte" role="reporte"   data-backdrop="static" data-keyboard="false" tabindex="-1"  aria-labelledby="staticBackdropLabel" aria-hidden="true"> 
-    
-</div>
-
-
-{% block extra %}
-	
-    <script type="text/javascript">
-       
-        function reporte(url){
-            $('#modalreporte').load(url, function(){
-                $(this).modal('show');
-                
-            });
-        }
-    </script>
-
-{% endblock extra %}
 
 
 {% endblock content %}

@@ -3,6 +3,6 @@ from .models import Profesor
 
 # Register your models here.
 class ProfesorAdmin(admin.ModelAdmin):
-    list_display = ('id_usuario','rol')
+    list_display = ('id_usuario','biografia')
 
 admin.site.register(Profesor, ProfesorAdmin)

@@ -1,6 +1,6 @@
 {% extends 'layouts/layout.html' %}
 
-{% block title %} {{title}} {% endblock title %} 
+{% block title %} Lista proyectos {% endblock title %} 
 
 {% block content %}
 
@@ -22,13 +22,17 @@
                         </div>
                         
                         <h5 class="card-title">Fecha de creacion</h5>
-                        <a href="{% url 'program_create' %}">Crear un programa</a>
-                        <p>{{proyecto.4}} </p>
-                        
-                        <a href="#" class="btn btn-primary">Ver programas</a>
-                        <a href="{% url 'program_create' %}"
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateProgram">Crear programa</button>
-                        </a>
+                        {% if request.user.profesor %}
+                            soy profesor
+                        {% else %}
+                            <a href="{% url 'program_create' %}">Crear un programa</a>
+                            <p>{{proyecto.4}} </p>
+                            
+                            <a href="#" class="btn btn-primary">Ver programas</a>
+                            <a href="{% url 'program_create' %}"
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateProgram">Crear programa</button>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

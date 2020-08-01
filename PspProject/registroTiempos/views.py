@@ -7,16 +7,41 @@ from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.base import TemplateView
 #modelos
 from programas.models import Programa
 from .models import RegistroTiempo
 from mainApp.models import Fase
-#fomulario
-#from .forms import ProgramaForm
+#requerir login
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
+class TiemposListView(ListView):
+    model = RegistroTiempo
+    template_name = "registrotiempos_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["pk"] = Programa.objects.get(id=self.kwargs.get('pk'))
+        return context
+
+@method_decorator(login_required, name='dispatch')
+class RegistroTiempoCreate(CreateView):
+    model = RegistroTiempo
+    fields = ['id_fase','id_programa', 'fecha_inicio','interrupciones','fecha_final', 'tiempo_total', 'comentarios']
+
+    def get_success_url(self):
+        return reverse_lazy('lista_tiempos', args=[self.object.id_programa.id])
+    
+    def get_context_data(self, **kwargs):
+        context = super(RegistroTiempoCreate, self).get_context_data(**kwargs)
+        context["programa"] = Programa.objects.get(id=self.kwargs.get('pk'))
+        return context
+
 @login_required(login_url='login')
-def RegistroTiempoCreate(request):
+def RegistroTiempoCreatef(request):
     if request.method=='POST':
         prg = Programa.objects.get(pk=request.POST['id_programa'])
         fase = Fase.objects.get(pk=request.POST['id_fase'])
@@ -33,4 +58,3 @@ def RegistroTiempoCreate(request):
         if request.POST['comentarios'] != "":
             rt.comentarios = request.POST['comentarios']
         rt.save()
-    return HttpResponse("hola")

@@ -32,6 +32,12 @@ urlpatterns = [
     path('partesBases/', include('partesBases.urls')),
     path('perfilEdit/', include('perfilEdit.urls')),
     path('partesAñadidas/', include('partesAñadidas.urls')),
+    path('graficos/', include('graficos.urls')),
+    path('resportes/', include('reportes.urls')),
+    path('profesores/', include('profesores.urls')),
+    path('pip/', include('pips.urls')),
+
+    path('partesReusadas/', include('partesReusadas.urls')),
     
     path('modulos/', views.modulos, name='modulos'),
     path('perfil/',editPerfil.editPerfilUser, name='editPerfilUs'),
@@ -47,6 +53,14 @@ urlpatterns = [
     path('accounts/', include('registration.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 
-    path('resportes/', include('reportes.urls')),
+    
+    path('estudiantes/', include('estudiantes.urls')),
+
+    
+
+    
+
+   
+
 
 ]

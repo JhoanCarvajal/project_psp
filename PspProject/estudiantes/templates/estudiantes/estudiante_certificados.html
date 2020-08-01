@@ -1,0 +1,32 @@
+
+{% extends 'layouts/layout.html' %}
+{% load static %}
+{% block title %} Estudiantes-Certificados {% endblock title %} 
+
+{% block content %}
+<h1>Estudiantes certificados</h1>
+<div class="row">
+{% for estudiante in estudiantes %}
+    {% if estudiante.id_profesor.id == request.user.profesor.id and estudiante.certificacion == True %}
+            <div class="col mb-3">
+                <div class="card text-center mb-3 mt-3">
+                    <div class="container" style="width: 20rem;">
+                        <figure class="full-box nav-lateral-avatar">
+                            <img style="width=10rem; height=10rem;" src=" {% static 'dashboar/assets/avatar/Avatar.png' %}" class="" alt="Avatar">
+                        </figure>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{estudiante.id_usuario.first_name}}</h5>
+                        <p class="card-text">{{estudiante.id_usuario.username}}</p>
+                        <p class="card-text">{{estudiante.id_usuario.email}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{estudiante.certificacion}}
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+{% endfor %} 
+</div>
+
+{% endblock content %}

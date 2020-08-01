@@ -1,50 +1,73 @@
+{% extends 'layouts/layout.html' %}
 
-    <div class="modal-dialog" role="documento">
-        <div class="modal-content" >
-            <div class="modal-header">
-               <h1>Hacer reporte</h1>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form>
-                <div class="modal-body " >
+{% block title %} Crear reporte {% endblock title %} 
+
+{% block content %}
+{% if id_progr.id_usuario.id == request.user.id %}
+    <div class="container">
+        <h1>Creacion de reportes: {{id_progr.nombre}}</h1>
+        <div class="card">
+            <div class="container"> 
+                <form method="post">
+                    {% csrf_token %}
+                    <input class="form-control" hidden value="{{id_progr.id}}" type="text" name="id_programa" maxlength="50" required id="id_programa">
                 
-                    <input name="id_programa" hidden required id="id_id_programa">
-                        
-
-                    <div class="row scroll-project-description">
-                        <label for="id_programa">Id:</label> 
-                        <input class="form-control" hidden type="text" name="nombre" maxlength="50" required id="id_programa">
-                        
+                    <div class="form-group">
                         <label for="id_nombre">Nombre:</label>
                         <input class="form-control" type="text" name="nombre" maxlength="50" required id="id_nombre">
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="id_numero_test">Numero de test:</label> 
                         <input class="form-control" type="number" name="numero_test" required id="id_numero_test">
+                    </div>
+                
+                    <div class="form-group">
                         <label for="id_objetivos">Objetivos:</label>
-                        <textarea class="form-control" name="objetivos" cols="40" rows="10" required id="id_objetivos">
-                        </textarea>
+                        <textarea class="form-control" name="objetivos" rows="2" required id="id_objetivos"></textarea>
+                    </div>
+                
+                    <div class="form-group">
                         <label for="id_condiciones">Condiciones:</label> 
-                        <textarea class="form-control" name="condiciones" cols="40" rows="10" required id="id_condiciones">
-                        </textarea>
+                        <textarea class="form-control" name="condiciones" rows="2" required id="id_condiciones"></textarea>
+                    </div>
+                
+                    <div class="form-group">
                         <label for="id_resultados_esperados">Resultados Esperados:</label> 
-                        <textarea class="form-control" name="resultados_esperados" cols="40" rows="10" required id="id_resultados_esperados">
-                        </textarea>
-                        
+                        <textarea class="form-control" name="resultados_esperados"  rows="2" required id="id_resultados_esperados"></textarea>
+                    </div>
+                
+                    <div class="form-group">
                         <label for="id_resultados_actules">Resultados Actuales:</label> 
-                        <textarea class="form-control" name="resultados_actules" cols="40" rows="10" required id="id_resultados_actules">
-                        </textarea>
+                        <textarea class="form-control" name="resultados_actules"  rows="2" required id="id_resultados_actules"></textarea>
+                    </div>
+                
+                    <div class="form-group">
                         <label for="id_descripcion">Descripción:</label> 
-                        <textarea class="form-control" name="descripcion" cols="40" rows="10" required id="id_descripcion">
-                        </textarea>
+                        <textarea class="form-control" name="descripcion" rows="2" required id="id_descripcion"></textarea>
                     </div>
-                
-                
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="sutmid" class="btn btn-success">Guardar</button>
-                    </div>
-                </div>
-            </form>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </form>
+            </div>
         </div>
     </div>
+
+
+{% else %}
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center vh-100">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-center">
+                        <i class="fas fa-exclamation fa-5x text-primary"  ></i>
+                    </div>
+                    
+                    <h1 class="text-primary">No eres propietario de esta programa</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %} 
+{% endblock content %}

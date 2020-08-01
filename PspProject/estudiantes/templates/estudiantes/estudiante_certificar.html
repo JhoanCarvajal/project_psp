@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %} Estudiantes-Certificar {% endblock title %} 
+
+{% block content %}
+{% load static %}
+<h1>Certificar estudiante</h1>
+<div class="row">
+{% for obj in estudiantes %}
+    {% for estudiante in estudiantes %}
+        <div class="col mb-3">
+            <div class="card text-center mb-3 mt-3">
+                <div class="card-header text-muted">                   
+                    <p class="mt-3">Estudiante: {{estudiante.id_usuario.last_name}}</p>
+                </div>
+                {% for obj_pro in programas %}
+                    <div class="card-body">
+                        {% for programa in obj_pro %}
+                            {% if estudiante.id_usuario == programa.id_usuario %}
+                                <p>Programas: {{programa.nombre}} --- url <a href="{% url 'info_programa' programa.id %}">VER PROGRAMA</a></p>       
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <div class="card-footer text-muted">
+                    {{estudiante.certificacion}}                  
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %} 
+</div>
+
+
+{% endblock content %}
