@@ -43,7 +43,7 @@
 
             <div class="text-center mb-3">
             {% comment %} <a href={% url 'actualizar_cuenta' request.user.id %} class="btn btn-primary">Editar</a> {% endcomment %}
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
+                <button type="button" class="btn btn-primary"  onclick="modalForm('{% url 'actualizar_cuenta' request.user.id %}')">
                     Editar
                 </button>
             </div>
@@ -61,8 +61,8 @@
                     <label for="nameUser">Cambiar contraseña</label>
                     <input type="text" class="form-control mb-2" id="nameUser" value="**************" disabled>
                     
-                    {% comment %} <a href={% url 'password_change' %} class="btn btn-primary">Cambiar contraseña</a> {% endcomment %}
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
+                    {% comment %} <a href= class="btn btn-primary">Cambiar contraseña</a> {% endcomment %}
+                    <button type="button" class="btn btn-primary" onclick="modalEditPassword('{% url 'password_change' %}')">
                         Cambiar contraseña
                     </button> 
                 </div>
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control mb-2" id="name" value="{{request.user.email}}" disabled>
 
                     {% comment %} <a href={% url 'eliminar_mi_cuenta' request.user.id %} class="btn btn-primary">Eliminar cuenta</a> {% endcomment %}
-                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDaleteU" onclick="modalDaletePerfil('{{request.user.username}}')">
+                     <button type="button" class="btn btn-primary" onclick="modalDaletePerfil('{% url 'eliminar_mi_cuenta' request.user.id %}')">
                         Eliminar cuanta
                     </button> 
                 </div>
@@ -81,107 +81,37 @@
 
      <!-- Modal edit information -->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <label>Nombre de usuario</label>
-                <input class="form-control mb-3" type="text"  id="username" disabled></input>
-                <label>Correo</label>
-                <input class="form-control mb-3" type="text"  id="emailUser" disabled></input>
-                <label>Nombre</label>
-                <input class="form-control mb-3" type="text"  id="nombreUser"></input>
-                <label>Apellido</label>
-                <input class="form-control mb-3" type="text"  id="apellidoUser"></input>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
+        
     </div>
+    
+     <!-- Modal dalete user-->
+    <div class="modal fade" id="modalDaleteU" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        
     </div>
 
      <!-- Modal edit password-->
-    <div class="modal fade" id="editPasswordModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Cambiar contraseña</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <label>Nombre de usuario</label>
-            <input class="form-control mb-3" type="password"  id="passwordEdit" disabled></input>
-            <label>Nueva contraseña</label>
-            <input class="form-control mb-3" type="text"  id="newPassword"></input>
-            <label>Confirme la contraseña</label>
-            <input class="form-control mb-3" type="text"  id="cofirmetPasword"></input>
+    <div class="modal fade" id="passwordEdit" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
-        </div>
-        </div>
-    </div>
     </div>
 
-     <!-- Modal dalete user-->
-    <div class="modal fade" id="modalDaleteU" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Eliminar cuenta!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-
-            <div class="card-body text-center">
-                
-                <form method="post">
-                    {% csrf_token %}
-                    <i class=" text-danger fas fa-5x fa-exclamation-triangle"></i>
-                    <h5 class="card-title">Estas seguro de eliminar la cuenta "{{ object }}"?</h5>
-                    <p class="card-text">No podrá recuperar ningún avanze realizado en esta cuenta después de eliminarla   </p>
-                        
-                    <div class="mb-2">
-                        <input class="btn btn-danger" type="submit" value="Confirmar">
-                    </div>
-                </form>
-                    
-                
-                <div class="card-footer text-muted">
-                    Usuario: {{object.username}} 
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script type="text/javascript">
-        function modalForm(username,email,nombre,apellido){
-            $('#username').val(username),
-            $('#emailUser').val(email),
-            $('#nombreUser').val(nombre),
-            $('#apellidoUser').val(apellido)  
+        function modalForm(url){
+            $('#staticBackdrop').load(url, function(){
+                $(this).modal('show');
+            });
         }
 
-        function modalEditPassword(password){
-            $('#passwordEdit').val(password)
+        function modalEditPassword(url){
+            $('#passwordEdit').load(url, function(){
+                $(this).modal('show');
+            });
         }
 
-        function modalDaletePerfil(userName){
-            $('#DaleteUser').val(userName)
+        function modalDaletePerfil(url){
+            $('#editPasswordModal').load(url, function(){
+                $(this).modal('show');
+            });
         }
     </script>
 {% endblock content %}

@@ -1,40 +1,38 @@
-
-{% extends 'layouts/layout.html' %}
-
-{% block title %} Confirmar {% endblock title %} 
-{% block content %}
-
-    
-
-    <div class="card text-center mb-5 mt-5">
-        <div class="card-header">
-            Eliminar cuenta!!
-        </div>
-        <div class="card-body">
-            {% if object.id == request.user.id %}
-                <form method="post">
-                    {% csrf_token %}
-                    <i class=" text-danger fas fa-5x fa-exclamation-triangle"></i>
-                    <h5 class="card-title">Estas seguro de eliminar la cuenta "{{ object }}"?</h5>
-                    <p class="card-text">No podrá recuperar ningún avanze realizado en esta cuenta después de eliminarla   </p>
-                    
-                    <div class="mb-2">
-                        <input class="btn btn-danger" type="submit" value="Confirmar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Eliminar cuenta!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if object.id == request.user.id %}
+                    <div class="card-body text-center">
+                        
+                        <form method="post" action="{% url 'eliminar_mi_cuenta' request.user.id %}">
+                            {% csrf_token %}
+                            <i class=" text-danger fas fa-5x fa-exclamation-triangle"></i>
+                            <h5 class="card-title">Estas seguro de eliminar la cuenta "{{ object }}"?</h5>
+                            <p class="card-text">No podrá recuperar ningún avanze realizado en esta cuenta después de eliminarla   </p>
+                                
+                            <div class="mb-2">
+                                <input class="btn btn-danger" type="submit" value="Confirmar">
+                            </div>
+                        </form>
+                        <div class="card-footer text-muted">
+                            Usuario: {{object.username}} 
+                        </div>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
                     </div>
-                </form>
-                <div class="mb-2" >
-                    <a href="{% url 'editPerfilUs' %}" class="btn btn-success">Regresar a inicio</a>
+                    {% else %}
+                        <i class="mb-3 text-danger fas fa-10x fa-exclamation-triangle"></i>
+                        <div class="card-footer text-muted">
+                            .
+                        </div>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                    {% endif %}
                 </div>
             </div>
-            <div class="card-footer text-muted">
-                Usuario: {{object.username}}
-            </div>
-            {% else %}
-                <i class="mb-3 text-danger fas fa-10x fa-exclamation-triangle"></i>
-                <div class="card-footer text-muted">
-                    .
-                </div>
-            {% endif %}
-    </div>
+        </div>
 
-{% endblock content %}
