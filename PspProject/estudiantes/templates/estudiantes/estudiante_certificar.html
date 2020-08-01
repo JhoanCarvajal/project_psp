@@ -1,0 +1,12 @@
+{% for obj in estudiantes %}
+    {% for estudiante in estudiantes %}
+        <p>Estudiante: {{estudiante.id_usuario.last_name}}</p>
+        {% for obj_pro in programas %}
+            {% for programa in obj_pro %}
+                {% if estudiante.id_usuario == programa.id_usuario %}
+                    <p>Programas: {{programa.nombre}} --- url <a href="{% url 'info_programa' programa.id %}">VER PROGRAMA</a></p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
