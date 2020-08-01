@@ -35,6 +35,7 @@ urlpatterns = [
     path('graficos/', include('graficos.urls')),
     path('resportes/', include('reportes.urls')),
     path('profesores/', include('profesores.urls')),
+    path('pip/', include('pips.urls')),
 
     path('partesReusadas/', include('partesReusadas.urls')),
     
