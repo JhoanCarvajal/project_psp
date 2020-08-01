@@ -21,10 +21,11 @@
                 </div>
             </div>
             
-            <a href={% url 'actualizar_cuenta' request.user.id %} class="btn btn-primary">Editar</a>
-            {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
+            {% comment %} <a href={% url 'actualizar_cuenta' request.user.id %} class="btn btn-primary">Editar</a> {% endcomment %}
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" onclick="modalForm('{{request.user.username}}','{{request.user.email}}','{{request.user.first_name}}','{{request.user.last_name}}')">
                 Editar
-            </button> {% endcomment %}
+            </button>
             
         </div>   
     </div>
@@ -37,10 +38,10 @@
                     <label for="nameUser">Cambiar contraseña</label>
                     <input type="text" class="form-control mb-2" id="nameUser" value="**************" disabled>
                     
-                    <a href={% url 'password_change' %} class="btn btn-primary">Cambiar contraseña</a>
-                    {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
+                    {% comment %} <a href={% url 'password_change' %} class="btn btn-primary">Cambiar contraseña</a> {% endcomment %}
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal" onclick="modalEditPassword('{{request.user.password}}')">
                         Cambiar contraseña
-                    </button> {% endcomment %}
+                    </button> 
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Borrar cuanta</label>

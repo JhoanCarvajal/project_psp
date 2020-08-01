@@ -17,13 +17,14 @@
                     <i class=" text-danger fas fa-5x fa-exclamation-triangle"></i>
                     <h5 class="card-title">Estas seguro de eliminar la cuenta "{{ object }}"?</h5>
                     <p class="card-text">No podrá recuperar ningún avanze realizado en esta cuenta después de eliminarla   </p>
-                    <div class="mb-2" >
-                        <buttom href="{% url 'proyectos' %}" class="btn btn-success">Regresar a inicio</buttom>
-                    </div>
+                    
                     <div class="mb-2">
-                        <input class="btn btn-danger" type="submit" value="Confirm">
+                        <input class="btn btn-danger" type="submit" value="Confirmar">
                     </div>
                 </form>
+                <div class="mb-2" >
+                    <a href="{% url 'editPerfilUs' %}" class="btn btn-success">Regresar a inicio</a>
+                </div>
             </div>
             <div class="card-footer text-muted">
                 Usuario: {{object.username}}
