@@ -88,7 +88,7 @@ class ProgramaDetailView(DetailView):
         context["partes_reusada"]= PartesReusada.objects.filter(id_programa=self.kwargs.get('pk'))
         #partes añadidas
         context["partes_añadida"]= PartesAñadida.objects.filter(id_programa=self.kwargs.get('pk'))
-      
+        #
         #para resumen de tiempos
         context["datos"], context["total_actual"] = matrizResumenTiempos(tiempos_programa, fases, cantidad_fases)
 
